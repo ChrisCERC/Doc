@@ -40,7 +40,7 @@ Typical uses include:
 
 --- 
 # Using Swagger 
-Swagger provides an interactive interface for exploring and testing the API. 
+[Swagger](airtextapi.html) provides an interactive interface for exploring and testing the API. 
 
 ## Trying an Endpoint 
 1. Click **Authorize**. 
