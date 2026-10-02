@@ -65,8 +65,8 @@ a {
 }
 
 .col_header {
-  background-color: $airtext-navy;
-  color: #ffffff;
+  background-color: #ffffff !important;
+  color: $airtext-navy;
 }
 
 /* Data Tables */
