@@ -26,7 +26,6 @@ paths:
       x-google-backend:
         address: https://europe-west2-forecastinputstore.cloudfunctions.net/get-forecast
       security:
-        - api_key: []
         - airTEXT-forecasting-key: []
       description: |
         ## Example calls
@@ -195,11 +194,6 @@ paths:
             application/json: {"forecastdate":"18-09-2024 08:42","timestamp":1726648969405.918,"zones":[{"forecasts":[{"NO2":1,"O3":3,"PM10":2,"PM2.5":1,"forecast_date":"2024-09-18","pollution_version":202409180312,"total":3,"total_status":"LOW"}],"zone_id":64,"zone_name":"Southwark","zone_type":1}]}
 
 securityDefinitions:
-  # This section configures basic authentication with an API key.
-  api_key:
-    type: "apiKey"
-    name: "key"
-    in: "query"
   # This section configures authentication with an API key in the header.
   airTEXT-forecasting-key:
     type: "apiKey"
