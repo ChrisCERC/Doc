@@ -22,3 +22,15 @@ Typical uses include:
 ## Connecting to WCS 
 
 TODO
+
+--- 
+## Example GetCapabilities 
+``` todo ``` 
+
+--- 
+## Example DescribeCoverage 
+``` todo ``` 
+
+--- 
+## Example GetCoverage 
+``` todo ``` 
