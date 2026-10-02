@@ -11,11 +11,11 @@ airTEXT is a free service for the public providing air pollution alerts by email
 
 The following data access methods are available: 
 
-| Service | Purpose | Suitable for | Link |
-| ------- | ------- | ------------ | ---- |
-| REST API | Access data programmatically | Developers, integrations | [REST API](restapi.md) |
-| WMS | View map layers | GIS users, mapping applications | [WMS Guide](wms.md) |
-| WCS | Download raster data | GIS users, analysts | [WCS Guide](wcs.md) |
+| Service | Purpose | Suitable for |
+| ------- | ------- | ------------ |
+| [REST API](restapi.md) | Access data programmatically | Developers, integrations |
+| [WMS](wms.md) | View map layers | GIS users, mapping applications |
+| [WCS](wcs.md) | Download raster data | GIS users, analysts |
 
 ## Data Update Schedule
 
