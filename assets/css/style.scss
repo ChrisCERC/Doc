@@ -46,11 +46,21 @@ body {
 }
 
 h1, h2, h3 {
-  color: $airtext-navy;
+  color: $airtext-navy !important;
   font-weight: 700;
   border-bottom: 2px solid $airtext-accent-blue;
   padding-bottom: 6px;
   margin-top: 25px;
+}
+
+h1 {
+  font-size: 32px !important;
+  font-weight: 600 !important;
+}
+
+h2 {
+  font-size: 24px !important;
+  font-weight: 600 !important;
 }
 
 .title {
