@@ -130,24 +130,6 @@ paths:
             - Waverley
             - Westminster 
             - Woking
-        - in: query
-          name: easting
-          required: false
-          type: number
-          description: |+
-            ### The Easting (British National Grid (EPSG:27700)) for the input point.  The API will return the forecasts for any zone that contains the input point. 
-            *- This will be overridden by the "zone" parameter if supplied*    
-            *- If this, northing and zone are not supplied, results will be for all zones*
-            *- This is only used if northing is also supplied*
-        - in: query
-          name: northing
-          required: false
-          type: number
-          description: |+
-            ### The Northing (British National Grid (EPSG:27700)) for the input point.  The API will return the forecasts for any zone that contains the input point. 
-            *- This will be overridden by the "zone" parameter if supplied*    
-            *- If this, easting and zone are not supplied, results will be for all zones*
-            *- This is only used if easting is also supplied*
       responses:
         '422':
           description: Value Error - one or more of the parameters are in the wrong format
