@@ -22,6 +22,7 @@ https://api.airtext.info/geoserver/london/wms
 | PM25 | Particulate Matter (PM<sub>2.5</sub>) | 
 | Total | Maximum DAQI levels over the four pollutants above | 
 
+# TODO - Provide Leaflet/OpenLayers examples, explain the WMS-T , styles, projections, preview map (?)
 
 ## Connecting to WMS 
 
