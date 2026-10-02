@@ -53,6 +53,14 @@ h1, h2, h3 {
   margin-top: 25px;
 }
 
+.title {
+color: $airtext-navy;
+  font-weight: 700;
+  border-bottom: 2px solid $airtext-accent-blue;
+  padding-bottom: 6px;
+  margin-top: 25px;
+}
+
 a {
   color: $airtext-primary-blue;
   font-weight: 500;
