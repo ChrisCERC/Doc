@@ -25,4 +25,12 @@ https://api.airtext.info/geoserver/london/wms
 
 ## Connecting to WMS 
 
-TODO
+``` todo ``` 
+
+--- 
+## Example GetCapabilities 
+``` todo ``` 
+
+--- 
+## Example GetMap 
+``` todo ``` 
