@@ -36,6 +36,7 @@ Typical uses include:
 		}
 	]
 } 
+```
 
 --- 
 # Using Swagger 
