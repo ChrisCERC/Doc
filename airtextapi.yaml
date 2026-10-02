@@ -1,0 +1,207 @@
+swagger: '2.0'
+info:
+  title: AirTEXT Forecasting API
+  description: |
+      ## Air quality, UV, pollen and temperature forecasts for Greater London, Surrey and parts of Essex.
+      
+      This API is based on airTEXT forecasting   ```https://www.airtext.info```
+      
+      This API provides air quality levels using the Daily Air Quality Index (DAQI) scale, and non-pollution levels, for London boroughs and other zones. 
+      The DAQI scale is from 1 to 10, 1-3 = Low, 4-6 = Moderate, 7-9 = High, 10 = Very high
+
+  version: 1.0.2
+host: london-airtext-forecasts-api-gateway-7x54d7qf.nw.gateway.dev
+x-google-endpoints:
+  - name: london-airtext-forecasts-api-gateway-7x54d7qf.nw.gateway.dev
+    allowCors: true
+schemes:
+  - https
+produces:
+  - application/json
+paths:
+  /getforecast/{mode}:
+    get:
+      summary: Get forecast data for pollutant and/or non-pollutant data
+      operationId: get-forecast
+      x-google-backend:
+        address: https://europe-west2-forecastinputstore.cloudfunctions.net/get-forecast
+      security:
+        - api_key: []
+        - airTEXT-forecasting-key: []
+      description: |
+        ## Example calls
+        #### This request will return the pollutant and non-pollutant data for all zones for the current date
+        * curl.exe -X GET "https://london-airtext-forecasts-api-gateway-7x54d7qf.nw.gateway.dev/getforecast/all" -H "Content-Type: application/json"  -H "X-API-KEY: <i>&lt;insert API key&gt;</i>"  
+        ---
+        #### This request will return the pollutant and non-pollutant data for Southwark for 6th September 2023 and 7th September 2023
+        * curl.exe -X GET "https://london-airtext-forecasts-api-gateway-7x54d7qf.nw.gateway.dev/getforecast/all?from=2023-09-06&numdays=2&zone=Southwark" -H "Content-Type: application/json"  -H "X-API-KEY: <i>&lt;insert API key&gt;</i>"  
+
+      parameters:
+        - in: path
+          name: mode
+          required: true
+          type: string
+          description: |+
+            ### Return pollutant data only, non-pollutant data only or all available data.  
+          enum:
+            - all
+            - pollutant
+            - nonpollutant
+        - in: query
+          name: from
+          required: false
+          type: string
+          format: date
+          pattern: ^\d{4}\-(0[1-9]|1[012])\-(0[1-9]|[12][0-9]|3[01])$
+          description: |+
+            ### The date (YYYY-MM-DD) of the first day of forecast. 
+            *- If this is omitted, the forecasts will start on the current date (plus the dateoffset, if supplied)*
+        - in: query
+          name: dateoffset
+          required: false
+          type: integer
+          enum: [ 0, 1, 2]
+          description: |+
+            ### The first day of the forecast will start <dateoffset> days after today. 
+            *- This is not used if "from" is supplied *
+            *- If this is omitted, the forecasts will start on the current date*
+        - in: query
+          name: numdays
+          required: false
+          type: integer
+          enum: [ 1, 2, 3]
+          description: |+
+            ### The number of days included in the forecast.  
+            *- If this is omitted, the forecasts will return a single day's forecast*
+        - in: query
+          name: zone
+          required: false
+          type: string
+          description: |+
+            ### The name of a single borough/region to return forecast data for.  
+            *- If this and easting/northing are not supplied, results will be for all zones*
+          enum: 
+            - Central London
+            - North London
+            - South London
+            - East London
+            - West London
+            - Barnet
+            - Bexley
+            - Brent
+            - Camden
+            - Chelmsford
+            - City of London
+            - Colchester
+            - Croydon
+            - Ealing
+            - Elmbridge
+            - Enfield
+            - Epsom and Ewell
+            - Greenwich
+            - Guildford
+            - Hackney
+            - Hammersmith and Fulham
+            - Haringey
+            - Harrow
+            - Havering
+            - Hillingdon
+            - Hounslow
+            - Islington
+            - Kensington and Chelsea
+            - Kingston upon Thames
+            - Lambeth
+            - Lewisham
+            - Maldon
+            - Merton
+            - Mole Valley
+            - Newham
+            - Redbridge
+            - Reigate and Banstead
+            - Richmond upon Thames
+            - Runnymede
+            - Southwark
+            - Spelthorne
+            - Surrey Heath
+            - Sutton
+            - Tandridge
+            - Tower Hamlets
+            - Waltham Forest
+            - Wandsworth
+            - Waverley
+            - Westminster 
+            - Woking
+        - in: query
+          name: easting
+          required: false
+          type: number
+          description: |+
+            ### The Easting (British National Grid (EPSG:27700)) for the input point.  The API will return the forecasts for any zone that contains the input point. 
+            *- This will be overridden by the "zone" parameter if supplied*    
+            *- If this, northing and zone are not supplied, results will be for all zones*
+            *- This is only used if northing is also supplied*
+        - in: query
+          name: northing
+          required: false
+          type: number
+          description: |+
+            ### The Northing (British National Grid (EPSG:27700)) for the input point.  The API will return the forecasts for any zone that contains the input point. 
+            *- This will be overridden by the "zone" parameter if supplied*    
+            *- If this, easting and zone are not supplied, results will be for all zones*
+            *- This is only used if easting is also supplied*
+      responses:
+        '422':
+          description: Value Error - one or more of the parameters are in the wrong format
+          examples: 
+            application/json: "Incorrect data format for 'from', should be YYYY-MM-DD"
+        '500':
+          description: Error
+        '200':
+          description: |+
+            
+            JSON containing:
+            
+            - **forecastdate**: The date/time the forecast was made 
+            - **timestamp**: 
+            - **zones**: An array of zones, each containing the following:
+                - **zone_id**
+                - **zone_name**: The name of the zone forecasted
+                - **zone_type**
+                - **forecasts**: An array of forecasts, each containing the following:
+                    
+                    - **forecast_date**: The date the forecast applies to
+                    
+                    When mode is 'all' or 'pollutant':
+                    - **pollution_version**: Each day is forecasted multiple times, the most recent forecast is returned with the version number associated with it
+                    - **NO2**: The DAQI level for NO2 
+                    - **PM10**: The DAQI level for PM10 
+                    - **PM2.5**: The DAQI level for PM2.5 
+                    - **O3**: The DAQI level for O3
+                    - **total**: The maximum DAQI level over all 4 pollutants
+                    - **total_status**: The Air Pollution level (LOW, MODERATE, HIGH, VERY HIGH)
+            
+                    When mode is 'all' or 'nonpollutant':
+                    - **non_pollution_version**: 
+                    - **uv**: UV level
+                    - **rain_am**:
+                    - **rain_pm**:
+                    - **wind_am**:
+                    - **wind_pm**:
+                    - **pollen**: Pollen
+                    - **temp_min**: Minimum temperature
+                    - **temp_max**: Maximum temperature
+            
+          examples:
+            application/json: {"forecastdate":"18-09-2024 08:42","timestamp":1726648969405.918,"zones":[{"forecasts":[{"NO2":1,"O3":3,"PM10":2,"PM2.5":1,"forecast_date":"2024-09-18","pollution_version":202409180312,"total":3,"total_status":"LOW"}],"zone_id":64,"zone_name":"Southwark","zone_type":1}]}
+
+securityDefinitions:
+  # This section configures basic authentication with an API key.
+  api_key:
+    type: "apiKey"
+    name: "key"
+    in: "query"
+  # This section configures authentication with an API key in the header.
+  airTEXT-forecasting-key:
+    type: "apiKey"
+    in: "header"
+    name: "X-API-KEY"
