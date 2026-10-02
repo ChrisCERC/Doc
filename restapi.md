@@ -36,11 +36,6 @@ Typical uses include:
 		}
 	]
 } 
-``` 
-
-### Swagger Documentation 
-The complete API documentation is available in Swagger. 
-Link: [Swagger document](airtextapi.html)
 
 --- 
 # Using Swagger 
