@@ -40,7 +40,7 @@ Typical uses include:
 
 ### Swagger Documentation 
 The complete API documentation is available in Swagger. 
-Link: [https://api.airtext.info/API/] (https://api.airtext.info/API/)_
+Link: [Swagger document](https://api.airtext.info/API/)
 
 --- 
 # Using Swagger 
