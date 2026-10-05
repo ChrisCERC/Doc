@@ -27,7 +27,7 @@ Our Web Coverage Service (WCS) provides access to raw raster data (GeoTIFF files
 
 #### To load raw airTEXT coverage datasets into QGIS:
 
-1. In QGIS, Layer $\rightarrow$ Add Layer $\rightarrow$ Add WCS Layer...
-2. Enter a Name (e.g., airTEXT WCS) and paste the endpoint URL:https://api.airtext.info/geoserver/london/wcs
-3. Click OK, expand the connection tree, and select your target coverage (e.g., NO2, PM10) and date.
+1. In QGIS, Layer &rarr; Add Layer &rarr; Add WCS Layer...
+2. Enter a Name (e.g. airTEXT WCS NO2) and paste the endpoint URL:https://api.airtext.info/geoserver/london/wcs
+3. Click OK, expand the connection tree, and select your target coverage (e.g. NO2, PM10) and date.
 4. QGIS will handle spatial trimming (subset/bbox) and projection mapping (crs) automatically as you query data.
