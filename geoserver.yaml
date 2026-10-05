@@ -4,11 +4,11 @@ info:
   description: Interactive documentation for GeoServer Web Map Service (WMS) and Web Coverage Service (WCS) layers.
   version: 1.0.0
 servers:
-  - url: https://api.airtext.info
+  - url: https://api.airtext.info/geoserver/london
     description: Production GeoServer Endpoint
 
 paths:
-  /geoserver/london/wms:
+  /wms:
     get:
       summary: GetMap - Render map image (WMS)
       description: |
@@ -111,7 +111,7 @@ paths:
                 type: string
                 format: binary
 
-  /geoserver/london/wcs:
+  /wcs:
     get:
       summary: GetCoverage - Raw coverage data (WCS)
       description: |
