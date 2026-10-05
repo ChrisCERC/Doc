@@ -70,12 +70,11 @@ paths:
         - name: time
           in: query
           required: true
-          description: ISO 8601 time string or keyword (e.g., PRESENT)
+          description: ISO 8601 timestamp (YYYY-MM-DDTHH:mm:ssZ) or WMS keyword (PRESENT)
           schema:
             type: string
-            format: date-time
-            default: "PRESENT"
-            example: "PRESENT"
+            default: "2026-10-07T00:00:00Z"
+            example: "2026-10-07T00:00:00Z"
         - name: srs
           in: query
           required: true
