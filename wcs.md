@@ -19,18 +19,15 @@ Typical uses include:
 | PM25 | Particulate Matter (PM<sub>2.5</sub>) | 
 | Total | Maximum DAQI levels over the four pollutants above | 
 
-## Connecting to WCS 
+## Consuming airTEXT WCS Layers
 
-TODO
+Our Web Coverage Service (WCS) provides access to raw raster data (GeoTIFF files) rather than pre-rendered map images. This enables direct spatial analysis, value extraction, and processing in GIS software and custom scripts.
 
---- 
-## Example GetCapabilities 
-``` todo ``` 
+### Desktop GIS Software (QGIS / ArcGIS)
 
---- 
-## Example DescribeCoverage 
-``` todo ``` 
+#### To load raw airTEXT coverage datasets into QGIS:
 
---- 
-## Example GetCoverage 
-``` todo ``` 
+1. In QGIS, navigate to Browser Panel $\rightarrow$ Right-click WCS $\rightarrow$ New Connection...
+2. Enter a Name (e.g., airTEXT WCS) and paste the endpoint URL:https://api.airtext.info/geoserver/london/wcs
+3. Click OK, expand the connection tree, and select your target coverage (e.g., NO2, PM10).
+4. Drag the layer onto your canvas. QGIS will handle spatial trimming (subset/bbox) and projection mapping (crs) automatically as you query data.
