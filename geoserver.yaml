@@ -136,8 +136,8 @@ paths:
           description: Version of WCS
           schema:
             type: string
-            default: 2.0.1
-            enum: [1.0.0, 1.1.0, 2.0.1]
+            default: 2.0.0
+            enum: [1.0.0, 1.1.0, 2.0.0]
         - name: request
           in: query
           required: true
@@ -151,16 +151,16 @@ paths:
         - name: coverageId
           in: query
           required: true
-          description: Pollutant coverage layer (used in WCS 2.0.1).
+          description: Pollutant coverage layer .
           schema:
             type: string
-            example: london__NO2
+            example: NO2
             enum:
-              - london__NO2
-              - london__PM10
-              - london__PM25
-              - london__O3
-              - london__Total
+              - NO2
+              - PM10
+              - PM25
+              - O3
+              - Total
         - name: format
           in: query
           required: true
