@@ -1,17 +1,20 @@
 openapi: 3.0.3
 info:
   title: GeoServer WMS Layer API
-  description: Interactive documentation for GeoServer Web Map Service (WMS) layers.
+  description: Interactive documentation for GeoServer Web Map Service (WMS) layers
   version: 1.0.0
 servers:
-  - url: https://api.airtext.info/geoserver/london/wms
+  - url: https://api.airtext.info
     description: Production GeoServer WMS Endpoint
 
 paths:
-  /:
+  /geoserver/london/wms:
     get:
-      summary: GetMap - Render map image
-      description: Returns a map image for specified layers, bounding box, and dimensions.
+      summary: Renders airTEXT maps
+      description: |
+        Provides URLs that can be used to view map layers.
+
+        **NOTE:** The "Try it out" feature in Swagger UI will not display the rendered map directly due to CORS restrictions. However, you can copy the generated **Request URL** and open it directly in a new browser tab to view the map image.
       parameters:
         - name: service
           in: query
