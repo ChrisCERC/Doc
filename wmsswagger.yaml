@@ -13,15 +13,20 @@ paths:
       summary: Renders airTEXT maps
       description: |
         Provides URLs that can be used to view map layers.
-
+        **Note for GIS Software & Libraries:**
+        When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS) or web mapping libraries (like OpenLayers or Leaflet), bounding box (`bbox`), image dimensions (`width`, `height`), and spatial reference (`srs`/`crs`) parameters are typically calculated and managed automatically by the client software as you pan and zoom.
         **NOTE:** The "Try it out" feature in Swagger UI will not display the rendered map directly due to CORS restrictions. However, you can copy the generated **Request URL** and open it directly in a new browser tab to view the map image.
       parameters:
         - name: service
           in: query
           required: true
+          description: Web Mapping Service (WMS)
           schema:
             type: string
+            enum:
+              - WMS
             default: WMS
+            readOnly: true
         - name: version
           in: query
           required: true
@@ -32,13 +37,14 @@ paths:
         - name: request
           in: query
           required: true
+          description: Version of WMS 
           schema:
             type: string
             default: GetMap
         - name: layers
           in: query
           required: true
-          description: Comma-separated list of workspace:layer names
+          description: Pollutant layers
           schema:
             type: string
             example: NO2
@@ -48,47 +54,38 @@ paths:
               - PM25
               - O3
               - Total
-        - name: styles
-          in: query
-          required: true
-          schema:
-            type: string
-            example: daqiNO2
-            enum:
-              - daqiNO2
-              - daqiPM10
-              - daqiPM25
-              - daqiO3
-              - daqiTotal
         - name: bbox
           in: query
           required: true
-          description: Bounding box minx,miny,maxx,maxy
+          description: Bounding box in map coordinates
           schema:
             type: string
             example: "51.069,-0.853,51.721,0.337"
         - name: width
           in: query
           required: true
+          description: Width of the output image (pixels)
           schema:
             type: integer
             default: 768
         - name: height
           in: query
           required: true
+          description: Height of the output image (pixels)
           schema:
             type: integer
             default: 512
         - name: time
           in: query
           required: false
-          description: ISO 8601 timestamp (YYYY-MM-DDTHH:mm:ssZ) 
+          description: ISO 8601 timestamp (YYYY-MM-DDT00:00:00Z) 
           schema:
             type: string
             example: "2026-10-07T00:00:00Z"
         - name: srs
           in: query
           required: true
+          description: Coordinate system in WGS84, British National Grid or Google 
           schema:
             type: string
             default: EPSG:4326
@@ -96,6 +93,7 @@ paths:
         - name: format
           in: query
           required: true
+          description: Image format
           schema:
             type: string
             default: image/png
