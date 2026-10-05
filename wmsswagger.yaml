@@ -71,8 +71,8 @@ paths:
           in: query
           required: true
           schema:
-            type: ISO8601
-            default: current
+            type: date-time
+            default: present
         - name: srs
           in: query
           required: true
