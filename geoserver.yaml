@@ -136,8 +136,8 @@ paths:
           description: Version of WCS
           schema:
             type: string
-            default: 2.0.0
-            enum: [1.0.0, 1.1.0, 2.0.0]
+            default: 1.1.0
+            enum: [1.0.0, 1.1.0]
         - name: request
           in: query
           required: true
@@ -170,9 +170,6 @@ paths:
             default: image/tiff
             enum:
               - image/tiff
-              - application/x-netcdf
-              - image/png
-              - ArcGrid
         - name: time
           in: query
           required: false
@@ -180,13 +177,21 @@ paths:
           schema:
             type: string
             example: "2026-10-07T00:00:00Z"
-        - name: subset
+        - name: crs
           in: query
-          required: false
-          description: Spatial trimming/slicing in WCS 2.0.1 (e.g. Lat(51.069,51.721), Long(-0.853,0.337))
+          required: true
+          description: Coordinate system in WGS84, British National Grid or Google
           schema:
             type: string
-            example: "Lat(51.069,51.721),Long(-0.853,0.337)"
+            default: EPSG:4326
+            enum: [EPSG:4326, EPSG:27700, EPSG:900913]
+        - name: bbox
+          in: query
+          required: true
+          description: Bounding box in map coordinates
+          schema:
+            type: string
+            example: "51.069,-0.853,51.721,0.337"
       responses:
         '200':
           description: Raster coverage data returned successfully
