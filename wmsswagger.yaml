@@ -58,6 +58,29 @@ paths:
               - PM25
               - O3
               - Total
+        - name: time
+          in: query
+          required: false
+          description: ISO 8601 timestamp (YYYY-MM-DDT00:00:00Z) 
+          schema:
+            type: string
+            example: "2026-10-07T00:00:00Z"
+        - name: format
+          in: query
+          required: true
+          description: Image format
+          schema:
+            type: string
+            default: image/png
+            enum: [image/png, image/jpeg]
+        - name: srs
+          in: query
+          required: true
+          description: Coordinate system in WGS84, British National Grid or Google 
+          schema:
+            type: string
+            default: EPSG:4326
+            enum: [EPSG:4326, EPSG:27700, EPSG:900913]
         - name: bbox
           in: query
           required: true
@@ -79,29 +102,6 @@ paths:
           schema:
             type: integer
             default: 512
-        - name: time
-          in: query
-          required: false
-          description: ISO 8601 timestamp (YYYY-MM-DDT00:00:00Z) 
-          schema:
-            type: string
-            example: "2026-10-07T00:00:00Z"
-        - name: srs
-          in: query
-          required: true
-          description: Coordinate system in WGS84, British National Grid or Google 
-          schema:
-            type: string
-            default: EPSG:4326
-            enum: [EPSG:4326, EPSG:27700, EPSG:900913]
-        - name: format
-          in: query
-          required: true
-          description: Image format
-          schema:
-            type: string
-            default: image/png
-            enum: [image/png, image/jpeg, image/svg+xml]
       responses:
         '200':
           description: Map image rendered successfully
