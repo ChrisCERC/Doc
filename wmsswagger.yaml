@@ -78,11 +78,10 @@ paths:
             default: 512
         - name: time
           in: query
-          required: true
-          description: ISO 8601 timestamp (YYYY-MM-DDTHH:mm:ssZ) or WMS keyword (PRESENT)
+          required: false
+          description: ISO 8601 timestamp (YYYY-MM-DDTHH:mm:ssZ) 
           schema:
             type: string
-            default: "2026-10-07T00:00:00Z"
             example: "2026-10-07T00:00:00Z"
         - name: srs
           in: query
@@ -90,7 +89,7 @@ paths:
           schema:
             type: string
             default: EPSG:4326
-            enum: [EPSG:4326, EPSG:3857]
+            enum: [EPSG:4326, EPSG:27700, EPSG:900913]
         - name: format
           in: query
           required: true
