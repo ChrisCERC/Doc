@@ -50,7 +50,7 @@ paths:
           required: true
           schema:
             type: string
-            example: NO2
+            example: daqiNO2
             enum:
               - daqiNO2
               - daqiPM10
