@@ -39,7 +39,7 @@ Our Web Map Service (WMS) layers can be integrated directly into web application
 When displaying WMS layers using JavaScript mapping frameworks, the library handles map tiling, bounding boxes (bbox), spatial reference alignment (srs/crs), and image dimensions (width/height) dynamically as the user pans and zooms.
 
 #### Leaflet Example:
-```
+```javascript
 const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wms', {
   layers: 'NO2',
   format: 'image/png',
@@ -50,7 +50,7 @@ const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wm
 ```
 
 #### OpenLayers Example:
-```
+```javascript
 const wmsSource = new ol.source.TileWMS({
   url: 'https://api.airtext.info/geoserver/london/wms',
   params: {
