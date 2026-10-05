@@ -148,7 +148,7 @@ paths:
               - GetCoverage
             default: GetCoverage
             readOnly: true
-        - name: coverageId
+        - name: coverage
           in: query
           required: true
           description: Pollutant coverage layer .
