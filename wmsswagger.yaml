@@ -12,9 +12,9 @@ paths:
     get:
       summary: Renders airTEXT maps
       description: |
-        Provides URLs that can be used to view map layers.<br />
+        Provides URLs that can be used to view map layers.<br /><br />
         **Note for GIS Software & Libraries:**<br />
-        When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS) or web mapping libraries (like OpenLayers or Leaflet), bounding box (`bbox`), image dimensions (`width`, `height`), and spatial reference (`srs`/`crs`) parameters are typically calculated and managed automatically by the client software as you pan and zoom.<br />
+        When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS) or web mapping libraries (like OpenLayers or Leaflet), bounding box (`bbox`), image dimensions (`width`, `height`), and spatial reference (`srs`/`crs`) parameters are typically calculated and managed automatically by the client software as you pan and zoom.<br /><br />
         **NOTE:** The "Try it out" feature in Swagger UI will not display the rendered map directly due to CORS restrictions. However, you can copy the generated **Request URL** and open it directly in a new browser tab to view the map image.
       parameters:
         - name: service
