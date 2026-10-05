@@ -67,7 +67,7 @@ const wmsSource = new ol.source.TileWMS({
 ### Desktop GIS Software (QGIS)
 
 To load airTEXT map layers into QGIS or other desktop GIS suites (such as ArcGIS):
-1. In QGIS, navigate to Browser Panel $\rightarrow$ Right-click WMS/WMTS $\rightarrow$ New Connection...
+1. In QGIS, navigate to Browser Panel &rarr; Right-click WMS/WMTS &rarr; New Connection...
 2. Enter a Name (e.g., airTEXT WMS) and paste the connection URL:
    https://api.airtext.info/geoserver/london/wms
 3. Click OK, expand the connection, and drag your desired pollutant layer (NO2, PM10, PM25, O3, Total) onto your map canvas.
