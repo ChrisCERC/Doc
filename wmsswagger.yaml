@@ -42,19 +42,28 @@ paths:
             enum:
               - NO2
               - PM10
+              - PM2_5
+              - O3
+              - Total
         - name: styles
           in: query
           required: true
           schema:
             type: string
-            default: ""
+            example: NO2
+            enum:
+              - daqiNO2
+              - daqiPM10
+              - daqiPM2_5
+              - daqiO3
+              - daqiTotal
         - name: bbox
           in: query
           required: true
           description: Bounding box minx,miny,maxx,maxy
           schema:
             type: string
-            example: "-0.15,51.45,-0.05,51.55"
+            example: "51.2,-0.69,51.5,0.38"
         - name: width
           in: query
           required: true
