@@ -1,0 +1,201 @@
+openapi: 3.0.3
+info:
+  title: GeoServer London OGC Web Services API
+  description: Interactive documentation for GeoServer Web Map Service (WMS) and Web Coverage Service (WCS) layers.
+  version: 1.0.0
+servers:
+  - url: https://api.airtext.info
+    description: Production GeoServer Endpoint
+
+paths:
+  /geoserver/london/wms:
+    get:
+      summary: GetMap - Render map image (WMS)
+      description: |
+        Provides URLs that can be used to view map layers.<br /><br />
+        **Note for GIS Software & Libraries:**<br />
+        When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS) or web mapping libraries (like OpenLayers or Leaflet), bounding box (`bbox`), image dimensions (`width`, `height`), and spatial reference (`srs`/`crs`) parameters are typically calculated and managed automatically by the client software as you pan and zoom.<br /><br />
+        **NOTE:** The "Try it out" feature in Swagger UI will not display the rendered map directly due to CORS restrictions. However, you can copy the generated **Request URL** and open it directly in a new browser tab to view the map image.
+      parameters:
+        - name: service
+          in: query
+          required: true
+          description: Web Mapping Service (WMS)
+          schema:
+            type: string
+            enum:
+              - WMS
+            default: WMS
+            readOnly: true
+        - name: version
+          in: query
+          required: true
+          description: Version of WMS
+          schema:
+            type: string
+            default: 1.3.0
+            enum: [1.1.1, 1.3.0]
+        - name: request
+          in: query
+          required: true
+          description: Request for map image
+          schema:
+            type: string
+            enum:
+              - GetMap
+            default: GetMap
+            readOnly: true
+        - name: layers
+          in: query
+          required: true
+          description: Pollutant layers
+          schema:
+            type: string
+            example: NO2
+            enum:
+              - NO2
+              - PM10
+              - PM25
+              - O3
+              - Total
+        - name: time
+          in: query
+          required: false
+          description: ISO 8601 timestamp (YYYY-MM-DDT00:00:00Z)
+          schema:
+            type: string
+            example: "2026-10-07T00:00:00Z"
+        - name: format
+          in: query
+          required: true
+          description: Image format
+          schema:
+            type: string
+            default: image/png
+            enum: [image/png, image/jpeg]
+        - name: srs
+          in: query
+          required: true
+          description: Coordinate system in WGS84, British National Grid or Google
+          schema:
+            type: string
+            default: EPSG:4326
+            enum: [EPSG:4326, EPSG:27700, EPSG:900913]
+        - name: bbox
+          in: query
+          required: true
+          description: Bounding box in map coordinates
+          schema:
+            type: string
+            example: "51.069,-0.853,51.721,0.337"
+        - name: width
+          in: query
+          required: true
+          description: Width of the output image (pixels)
+          schema:
+            type: integer
+            default: 768
+        - name: height
+          in: query
+          required: true
+          description: Height of the output image (pixels)
+          schema:
+            type: integer
+            default: 512
+      responses:
+        '200':
+          description: Map image rendered successfully
+          content:
+            image/png:
+              schema:
+                type: string
+                format: binary
+
+  /geoserver/london/wcs:
+    get:
+      summary: GetCoverage - Raw coverage data (WCS)
+      description: |
+        Provides URLs that can be used to download raw raster coverage data.<br /><br />
+        **Note for GIS Software & Libraries:**<br />
+        When adding this WCS service to desktop GIS applications (such as QGIS or ArcGIS) or web mapping clients, parameters like bounding box (`subset` / `bbox`), spatial reference (`crs`), and resolution/dimensions are typically calculated and managed automatically by the client software as you request coverages.<br /><br />
+        **NOTE:** The "Try it out" feature in Swagger UI may not display binary coverage files directly in the browser due to CORS restrictions or raw file handling. However, you can copy the generated **Request URL** and paste it directly into a new browser tab or GIS software to download the dataset.
+      parameters:
+        - name: service
+          in: query
+          required: true
+          description: Web Coverage Service (WCS)
+          schema:
+            type: string
+            enum:
+              - WCS
+            default: WCS
+            readOnly: true
+        - name: version
+          in: query
+          required: true
+          description: Version of WCS
+          schema:
+            type: string
+            default: 2.0.1
+            enum: [1.0.0, 1.1.0, 2.0.1]
+        - name: request
+          in: query
+          required: true
+          description: Request for raster coverage dataset
+          schema:
+            type: string
+            enum:
+              - GetCoverage
+            default: GetCoverage
+            readOnly: true
+        - name: coverageId
+          in: query
+          required: true
+          description: Pollutant coverage layer (used in WCS 2.0.1).
+          schema:
+            type: string
+            example: london__NO2
+            enum:
+              - london__NO2
+              - london__PM10
+              - london__PM25
+              - london__O3
+              - london__Total
+        - name: format
+          in: query
+          required: true
+          description: Coverage output data format
+          schema:
+            type: string
+            default: image/tiff
+            enum:
+              - image/tiff
+              - application/x-netcdf
+              - image/png
+              - ArcGrid
+        - name: time
+          in: query
+          required: false
+          description: ISO 8601 timestamp (YYYY-MM-DDT00:00:00Z)
+          schema:
+            type: string
+            example: "2026-10-07T00:00:00Z"
+        - name: subset
+          in: query
+          required: false
+          description: Spatial trimming/slicing in WCS 2.0.1 (e.g. Lat(51.069,51.721), Long(-0.853,0.337))
+          schema:
+            type: string
+            example: "Lat(51.069,51.721),Long(-0.853,0.337)"
+      responses:
+        '200':
+          description: Raster coverage data returned successfully
+          content:
+            image/tiff:
+              schema:
+                type: string
+                format: binary
+            application/x-netcdf:
+              schema:
+                type: string
+                format: binary
