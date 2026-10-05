@@ -72,6 +72,6 @@ To load airTEXT map layers into QGIS or other desktop GIS suites (such as ArcGIS
    https://api.airtext.info/geoserver/london/wms
 3. Click OK, expand the connection, and drag your desired pollutant layer (NO2, PM10, PM25, O3, Total) onto your map canvas.
 
-#### Note on Client Parameter Automation: When using QGIS, OpenLayers, or Leaflet, you do not need to manually define parameters like bbox, width, height, or request=GetMap. The client software calculates these on the fly based on your active viewport and screen resolution.
+**Note on Client Parameter Automation:** When using QGIS, OpenLayers, or Leaflet, you do not need to manually define parameters like bbox, width, height, or request=GetMap. The client software calculates these on the fly based on your active viewport and screen resolution.
 
 
