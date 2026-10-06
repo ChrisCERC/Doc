@@ -50,19 +50,7 @@ const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wm
 }).addTo(map);
 ```
 
-#### OpenLayers Example:
-
-```javascript
-const wmsSource = new ol.source.TileWMS({
-  url: 'https://api.airtext.info/geoserver/london/wms',
-  params: {
-    'LAYERS': 'NO2',
-    'TILED': true,
-    'TIME': '2026-10-07T00:00:00Z'
-  },
-  serverType: 'geoserver'
-});
-```
+[View Example]
 
 ### Desktop GIS Software (QGIS)
 
