@@ -10,6 +10,36 @@ $airtext-accent-blue: #9ABFE9;
 $airtext-bg: #f4f7fb;
 $airtext-text: #222222;
 
+.btn-leaflet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  background-color: #0284c7; /* Matching primary airTEXT blue */
+  color: #ffffff;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-leaflet:hover {
+  background-color: #0369a1;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-leaflet:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.btn-leaflet .icon {
+  flex-shrink: 0;
+}
 
 body {
   font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
