@@ -50,7 +50,7 @@ const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wm
 }).addTo(map);
 ```
 
-[View Example]
+<a href="./leaflet.html">Example leaflet implementation</a>
 
 ### Desktop GIS Software (QGIS)
 
