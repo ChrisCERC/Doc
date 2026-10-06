@@ -10,6 +10,24 @@ $airtext-accent-blue: #9ABFE9;
 $airtext-bg: #f4f7fb;
 $airtext-text: #222222;
 
+.btn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.btn-primary {
+  background-color: #0284c7;
+  color: #ffffff !important;
+}
+
+.btn-primary:hover {
+  background-color: #0369a1;
+}
+
 .btn-leaflet {
   display: inline-flex;
   align-items: center;
