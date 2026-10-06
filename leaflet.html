@@ -18,8 +18,8 @@
       font-family: system-ui, -apple-system, sans-serif;
     }
     #map {
-      width: 100vw;
-      height: 100vh;
+      width: 600px;
+      height: 400px;
     }
     pre {
       background-color: #1e293b;
@@ -51,7 +51,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     }).addTo(map);
   
 const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wms', {
-      layers: 'NO2',
+      layers: 'Total',
       format: 'image/png',
       transparent: true,
       version: '1.3.0',
@@ -73,7 +73,7 @@ const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wm
     }).addTo(map);
 
     const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wms', {
-      layers: 'NO2',
+      layers: 'Total',
       format: 'image/png',
       transparent: true,
       version: '1.3.0',
