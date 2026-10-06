@@ -10,6 +10,14 @@ $airtext-accent-blue: #9ABFE9;
 $airtext-bg: #f4f7fb;
 $airtext-text: #222222;
 
+/* Rouge Syntax Highlight Overrides */
+.highlight .kd, .highlight .k { color: #cf222e; font-weight: bold; } /* Keywords (const, new, let) */
+.highlight .nx { color: #0550ae; }                                   /* Identifiers (map, setView) */
+.highlight .p  { color: #57606a; }                                   /* Punctuation (braces, parens, dots) */
+.highlight .s2 { color: #0a3069; }                                   /* Strings */
+.highlight .mi, .highlight .mf { color: #0550ae; }                   /* Numbers / Floats */
+.highlight .nl { color: #116329; }                                   /* Object Keys / Labels */
+
 .btn {
   display: inline-block;
   padding: 0.6rem 1.2rem;
