@@ -12,6 +12,8 @@ Typical uses include:
 
 https://api.airtext.info/geoserver/london/wms
 
+[View definition](./wms.html){: .btn .btn-primary }
+
 ## Available Layers
 
 | Layer | Description | 
