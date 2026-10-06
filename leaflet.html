@@ -19,37 +19,11 @@
       width: 100vw;
       height: 100vh;
     }
-    .time-control {
-      position: absolute;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1000;
-      background: rgba(255, 255, 255, 0.95);
-      padding: 12px 20px;
-      border-radius: 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .time-control label {
-      font-weight: 600;
-      font-size: 0.9rem;
-      color: #1e293b;
-    }
   </style>
 </head>
 <body>
 
   <div id="map"></div>
-
-  <!-- Time Slider UI -->
-  <div class="time-control">
-    <label for="timeRange">Forecast Time:</label>
-    <input type="range" id="timeRange" min="0" max="23" value="0" step="1">
-    <span id="timeLabel" style="font-family: monospace; font-weight: bold;">2026-10-07T00:00:00Z</span>
-  </div>
 
   <script>
     // 1. Initialize Map
@@ -74,19 +48,7 @@
       attribution: '&copy; airTEXT'
     }).addTo(map);
 
-    // 4. Update WMS TIME dynamically on slider change
-    const timeSlider = document.getElementById('timeRange');
-    const timeLabel = document.getElementById('timeLabel');
-
-    timeSlider.addEventListener('input', (e) => {
-      const hour = String(e.target.value).padStart(2, '0');
-      currentTime = `2026-10-07T${hour}:00:00Z`;
-      
-      timeLabel.textContent = currentTime;
-
-      // setParams updates the WMS parameters and automatically redraws tiles
-      airtextWMS.setParams({ time: currentTime });
-    });
+    
   </script>
 
 </body>
