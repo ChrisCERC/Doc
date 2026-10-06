@@ -46,6 +46,32 @@
 
   <p></br>This demonstration illustrates how local authorities and health applications can embed high-resolution air quality forecasts directly into web maps using Web Map Service (WMS) standards.</p>
 
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+	</span><span class="nl">"forecastdate"</span><span class="p">:</span><span class="s2">"17-07-2026 14:48"</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"timestamp"</span><span class="p">:</span><span class="mf">1784299724550.003</span><span class="p">,</span><span class="w">
+	</span><span class="nl">"zones"</span><span class="p">:[</span><span class="w">
+		</span><span class="p">{</span><span class="nl">"forecasts"</span><span class="p">:</span><span class="w">
+			</span><span class="p">[</span><span class="w">
+				</span><span class="p">{</span><span class="w">
+					</span><span class="nl">"NO2"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+					</span><span class="nl">"O3"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+					</span><span class="nl">"PM10"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+					</span><span class="nl">"PM2.5"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+					</span><span class="nl">"forecast_date"</span><span class="p">:</span><span class="s2">"2026-07-17"</span><span class="p">,</span><span class="w">
+					</span><span class="nl">"pollution_version"</span><span class="p">:</span><span class="mi">202607171410</span><span class="p">,</span><span class="w">
+					</span><span class="nl">"total"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+					</span><span class="nl">"total_status"</span><span class="p">:</span><span class="s2">"LOW"</span><span class="w">
+				</span><span class="p">}</span><span class="w">
+			</span><span class="p">],</span><span class="w">
+			</span><span class="nl">"zone_id"</span><span class="p">:</span><span class="mi">29</span><span class="p">,</span><span class="w">
+			</span><span class="nl">"zone_name"</span><span class="p">:</span><span class="s2">"Southwark"</span><span class="p">,</span><span class="w">
+			</span><span class="nl">"zone_type"</span><span class="p">:</span><span class="mi">1</span><span class="w">
+		</span><span class="p">}</span><span class="w">
+	</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w"> 
+</span></code></pre></div></div>
+
+  
 <h2>Code example</h2>
 <pre><code>
 // Define the leaflet map, centred on London
