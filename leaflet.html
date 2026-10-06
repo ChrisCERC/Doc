@@ -63,7 +63,7 @@
 <span class="kd">const</span> <span class="nx">today</span> <span class="p">=</span> <span class="k">new</span> <span class="nx">Date</span><span class="p">().</span><span class="nx">toISOString</span><span class="p">().</span><span class="nx">split</span><span class="p">(</span><span class="s2">'T'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span><span class="p">;</span>
 
   <span class="c1">// Add airTEXT WMS layer</span>
-<span class="kd">const</span> <span class="nx">airtextNO2</span> <span class="p">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">.</span><span class="nx">wms</span><span class="p">(</span><span class="s2">'https://api.airtext.info/geoserver/london/wms'</span><span class="p">,</span> <span class="p">{</span>
+<span class="kd">const</span> <span class="nx">airtextWMS</span> <span class="p">=</span> <span class="nx">L</span><span class="p">.</span><span class="nx">tileLayer</span><span class="p">.</span><span class="nx">wms</span><span class="p">(</span><span class="s2">'https://api.airtext.info/geoserver/london/wms'</span><span class="p">,</span> <span class="p">{</span>
   <span class="nl">layers</span><span class="p">:</span> <span class="s2">'Total'</span><span class="p">,</span>
   <span class="nl">format</span><span class="p">:</span> <span class="s2">'image/png'</span><span class="p">,</span>
   <span class="nl">transparent</span><span class="p">:</span> <span class="kc">true</span><span class="p">,</span>
