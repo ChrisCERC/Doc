@@ -24,4 +24,7 @@ The data is updated regularly.  Twice a day, a full data update is performed usi
 
 <embed src="AirTEXT_A4_Comms_Pack_vFINAL_interactive.pdf" type="application/pdf" width="100%" height="600px" />
 
-<iframe src="AirTEXT_A4_Comms_Pack_vFINAL_interactive.pdf" width="100%" height="600px"></iframe>
+<embed src="AirTEXT_A4_Comms_Pack_vFINAL_print.pdf" type="application/pdf" width="100%" height="600px" />
+
+<embed src="AirTEXT_A6_Postcard_vFINAL_print.pdf" type="application/pdf" width="100%" height="600px" />
+
