@@ -20,9 +20,12 @@
     #map {
       width: 80%;
       height: 400px;
-      margin: 0 auto;
+      margin: 25px auto;
     }
     pre {
+      width: 80%;
+      height: 400px;
+      margin: 10 auto;
       background-color: #1e293b;
       color: #f8fafc;
       padding: 1rem;
@@ -39,10 +42,10 @@
   <!-- Include airTEXT Header Component -->
   {% include header.html %}
 <main class="main-content">
-<h1>Example WMS</h1>
+<h1>airTEXT WMS in leaflet</h1>
 
-  <p>The map below is using the airTEXT WMS on a leaflet map.</p>
-
+  <p></br>The map below is showing the airTEXT WMS on a leaflet map.</p>
+  <p>It is showing </p>
 <pre><code>
 const map = L.map('map').setView([51.505, -0.09], 10);
 
@@ -57,7 +60,7 @@ const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wm
       transparent: true,
       version: '1.3.0',
       opacity: 0.75,
-      time: '2026-10-07T00:00:00Z'
+      time: (today's date in 'yyyy-mm-ddT00:00:00Z' format)
       attribution: '&copy; airTEXT'
     }).addTo(map);</code></pre>
   
@@ -72,14 +75,14 @@ const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wm
       maxZoom: 19,
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(map);
-
+    const today = new Date().toISOString().split('T')[0];
     const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wms', {
       layers: 'Total',
       format: 'image/png',
       transparent: true,
       version: '1.3.0',
       opacity: 0.75,
-      time: '2026-10-07T00:00:00Z',
+      time: today + 'T00:00:00Z',
       attribution: '&copy; airTEXT'
     }).addTo(map);
 
