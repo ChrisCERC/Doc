@@ -20,3 +20,8 @@ The following data access methods are available:
 ## Data Update Schedule
 
 The data is updated regularly.  Twice a day, a full data update is performed using the latest forecast data for three days.  The morning update provides data for the current day and the next two days.  The evening update provides data for the next three days.  The current day's data is also updated every 2 hours, taking into account the latest monitoring data.
+
+
+<embed src="AirTEXT_A4_Comms_Pack_vFINAL_interactive.pdf" type="application/pdf" width="100%" height="600px" />
+
+<iframe src="AirTEXT_A4_Comms_Pack_vFINAL_interactive.pdf" width="100%" height="600px"></iframe>
