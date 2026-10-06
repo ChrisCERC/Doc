@@ -34,7 +34,7 @@ The data is stored in WGS84 (EPSG:3486) coordinate system, but can be requested 
 
 Our Web Map Service (WMS) layers can be integrated directly into web applications or desktop GIS applications.  
 
-### Web Mapping Libraries (Leaflet / OpenLayers)
+### Web Mapping Libraries (Leaflet)
 
 When displaying WMS layers using JavaScript mapping frameworks, the library handles map tiling, bounding boxes (bbox), spatial reference alignment (srs/crs), and image dimensions (width/height) dynamically as the user pans and zooms.
 
@@ -50,7 +50,7 @@ const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wm
 }).addTo(map);
 ```
 
-[View example leaflet implementation](./leaflet.html){: .btn .btn-primary }
+[View full leaflet example](./leaflet.html){: .btn .btn-primary }
 
 
 ### Desktop GIS Software (QGIS)
