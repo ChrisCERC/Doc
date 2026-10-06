@@ -46,6 +46,7 @@
 
   <p></br>This demonstration illustrates how local authorities and health applications can embed high-resolution air quality forecasts directly into web maps using Web Map Service (WMS) standards.</p>
 
+<h2>Code example</h2>
 <pre><code>
 const map = L.map('map').setView([51.505, -0.09], 10);
 
@@ -63,7 +64,7 @@ const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wm
       time: today + 'T00:00:00Z',
       attribution: '&copy; airTEXT'
     }).addTo(map);</code></pre>
-  
+  <h2>Leaflet map</h2>
   <div id="map"></div>
 </main>
   <script>
