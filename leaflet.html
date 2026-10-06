@@ -82,6 +82,9 @@ const airtextWMS = L.tileLayer.wms('https://api.airtext.info/geoserver/london/wm
       attribution: '&copy; airTEXT'
     }).addTo(map);
 
+    map.invalidateSize();
+map.setView([latitude, longitude], zoomLevel);
+
     
   </script>
 
