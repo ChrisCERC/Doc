@@ -10,6 +10,12 @@ $airtext-accent-blue: #9ABFE9;
 $airtext-bg: #f4f7fb;
 $airtext-text: #222222;
 
+.map {
+  width: 80%; /* or whatever your new size is */
+  height: 400px;
+  margin: 0 auto; /* Simple horizontal centering */
+}
+
 body {
   font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Helvetica, Arial, sans-serif;
   background-color: $airtext-bg;
