@@ -225,8 +225,7 @@ When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS
                             <span class="param-name">layers</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Pollutant</br><b></b>NOTE:</b> PM25 refers to PM₂.₅</br><span style="color:gray;">Available values: NO2, PM10, PM25, O3, Total</span></td>
-                        
+                        <td>Pollutant layer</br><span style="color:gray;">Available values: NO2, PM10, PM25*, O3, Total</br>* - PM₂.₅</span></td>
                     </tr>
                     <tr>
                         <td>
@@ -240,21 +239,21 @@ When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS
                             <span class="param-name">format</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Image format. Use <code>image/png</code> or <code>image/jpeg</code>.</td>
+                        <td>Image format.</br><span style="color:gray;">Available values: <code>image/png</code>, <code>image/jpeg</code></span></td>
                     </tr>
                     <tr>
                         <td>
                             <span class="param-name">srs</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Coordinate system in WGS84, British National Grid or Google.</br>Available values: EPSG:4326, EPSG:27700, EPSG:900913</td>
+                        <td>Coordinate system in WGS84, British National Grid or Google.</br><span style="color:gray;">Available values: EPSG:4326, EPSG:27700, EPSG:900913</span></td>
                     </tr>
                     <tr>
                         <td>
                             <span class="param-name">bbox</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Bounding box in map coordinates. Example: <code>51.069,-0.853,51.721,0.337</code></td>
+                        <td>Bounding box in map coordinates. </br><span style="color:gray;">Example: <code>51.069,-0.853,51.721,0.337</code></span></td>
                     </tr>
                     <tr>
                         <td>
