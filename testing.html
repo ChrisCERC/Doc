@@ -1,41 +1,20 @@
+---
+---
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>London Air Quality Data API</title>
-<style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
- --bg:#f6f7f9;--card:#fff;--text:#1d2530;--muted:#5d6877;--line:#dde2e8;--code:#14202e;--codetext:#e6edf5;
- --get:#2563eb;--accent:#0f766e}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10151b;--card:#18202a;--text:#e6edf5;--muted:#93a1b3;--line:#2a3542;--code:#0b1118;--codetext:#e6edf5;--get:#60a5fa;--accent:#2dd4bf}}
-:root[data-theme="dark"]{--bg:#10151b;--card:#18202a;--text:#e6edf5;--muted:#93a1b3;--line:#2a3542;--code:#0b1118;--codetext:#e6edf5;--get:#60a5fa;--accent:#2dd4bf}
-html{scroll-padding-top:env(safe-area-inset-top,0px)}
-body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-main{max-width:920px;margin:0 auto;padding:24px 16px 48px}
-h1{margin:0 0 4px;font-size:26px} h2{margin:32px 0 10px;font-size:18px;border-bottom:2px solid var(--accent);padding-bottom:4px}
-p{margin:6px 0;color:var(--muted)} code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
-.base{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin-top:14px}
-.base code{color:var(--accent);word-break:break-all}
-details{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--get);border-radius:8px;margin:10px 0}
-summary{cursor:pointer;padding:10px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-.badge{background:var(--get);color:#fff;font-weight:700;font-size:12px;padding:3px 10px;border-radius:4px}
-.path{font-family:ui-monospace,Menlo,Consolas,monospace;font-weight:600} .desc{color:var(--muted);font-size:14px}
-.body{padding:0 14px 14px}
-h3{font-size:13px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);margin:16px 0 6px}
-.scroll{overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:560px}
-th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
-th{color:var(--muted);font-weight:600}
-.req{color:#dc2626;font-size:11px;font-weight:700} .opt{color:var(--muted);font-size:11px}
-.pre{position:relative;background:var(--code);color:var(--codetext);border-radius:6px;padding:12px 14px;overflow-x:auto}
-.pre pre{margin:0;font:12.5px/1.55 ui-monospace,Menlo,Consolas,monospace;white-space:pre}
-.copy{position:absolute;top:6px;right:6px;border:1px solid #3b4a5c;background:#223042;color:#e6edf5;border-radius:4px;font-size:12px;padding:3px 9px;cursor:pointer}
-.note{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:14px}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Promotion</title>
+  <!-- airTEXT Custom Styles -->
+  <link rel="stylesheet" href="{{ './assets/css/style.css' | relative_url }}">
+<link rel="stylesheet" href="{{ './assets/css/promo.css' | relative_url }}">
 </head>
-<body>
-<main>
+<body style="margin: 0; padding: 0; background-color: #f4f7fb;">
+
+  <!-- Include airTEXT Header Component -->
+  {% include promoheader.html %}
+<main class="main-content">
   <h1>WCS</h1>
   <p>Open, read-only access to gridded air quality data using standard OGC services. Every operation is an HTTP <code>GET</code>, so you can call it from curl, Python, R, QGIS or any GIS tool.</p>
   <img src="./assets/img/WCS.png" alt="Example WCS GeoTIFF output" width="250px" />
