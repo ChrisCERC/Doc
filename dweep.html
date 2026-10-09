@@ -38,6 +38,7 @@ th{color:var(--muted);font-weight:600}
 <main>
   <h1>WCS</h1>
   <p>Open, read-only access to gridded air quality data using standard OGC services. Every operation is an HTTP <code>GET</code>, so you can call it from curl, Python, R, QGIS or any GIS tool.</p>
+  <img src="./assets/img/WCS.png" alt="Example WCS GeoTIFF output" width="250px" />
   <div class="base"><strong>Base URL</strong><br><code>https://api.airtext.info/geoserver/london</code></div>
   <div id="ops"></div>
 </main>
@@ -64,7 +65,7 @@ const ops = [
     P('subset',1,'string','Output geographical area (latitude)','Lat(51.51,51.52)'),
     P('subset',1,'string','Date','time("2026-10-09T00:00:00.000Z")')],
    curl:curl(B+'/wcs',['service=WCS','version=2.0.0','request=GetCoverage','coverageId=NO2','format=image/tiff','subset=Long(-0.12,-0.11)','subset=Lat(51.51,51.52)','subset=time("'+T+'")'],'no2.tif'),
-   resp:'200: image/tiff (GeoTIFF; open in QGIS, GDAL, rasterio). 400: invalid subset or time not available.<img src="./assets/img/WCS.png" alt="Example WCS GeoTIFF output" width="250px" />'}]}
+   resp:'200: image/tiff (GeoTIFF; open in QGIS, GDAL, rasterio). 400: invalid subset or time not available.'}]}
 ];
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
