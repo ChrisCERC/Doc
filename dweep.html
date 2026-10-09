@@ -85,7 +85,7 @@ const ops = [
     P('format',1,'string','Output format. GeoTIFF is image/tiff.','image/tiff'),
     P('subset',1,'string','Output geographical area (longitude)','Long(-0.12,-0.11)'),
     P('subset',1,'string','Output geographical area (latitude)','Lat(51.51,51.52)'),
-    P('subset',1,'string','Date','time("2026-10-09T00:00:00.000Z")'),
+    P('subset',1,'string','Date','time("2026-10-09T00:00:00.000Z")')],
    curl:curl(B+'/wcs',['service=WCS','version=2.0.0','request=GetCoverage','coverageId=NO2','format=image/tiff','subset=Long(-0.12,-0.11)','subset=Lat(51.51,51.52)','subset=time("'+T+'")'],'no2.tif'),
    resp:'200: image/tiff (GeoTIFF; open in QGIS, GDAL, rasterio). 400: invalid subset or time not available.'},
   {path:'/wcs', title:'DescribeCoverage', desc:'Describes a coverage: extent, CRS, resolution, bands and time range.',
