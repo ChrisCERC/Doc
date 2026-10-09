@@ -172,14 +172,14 @@
 
 <div class="swagger-container">
     <h1 class="title">WCS API definition</h1>
-    <pre class="base-url" style="margin-bottom: 25px;">[ Base URL: api.airtext.info/geoserver/london ]</pre>
+    <pre class="base-url" style="margin-bottom: 25px;">[ Base URL: api.airtext.info ]</pre>
     
 
     <!-- WCS GetCoverage Operation -->
     <div class="opblock">
         <div class="opblock-summary" onclick="toggleDetails(this)">
             <span class="opblock-method">GET</span>
-            <span class="opblock-path">/wcs</span>
+            <span class="opblock-path">/geoserver/london/wcs</span>
             <span class="opblock-summary-description">Downloads the coverage rendered as a visual PNG image or GeoTIFF grid.</span>
         </div>
         <div class="opblock-body">
@@ -202,28 +202,28 @@
                             <span class="param-name">service</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Must be WCS. (Default: <code>WCS</code>)</td>
+                        <td>Must be WCS. </td>
                     </tr>
                     <tr>
                         <td>
                             <span class="param-name">version</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>WCS version standard. (Default: <code>2.0.0</code>)</td>
+                        <td>WCS version standard.</br><span style="color:gray;">Default: <code>2.0.0</code></span></td>
                     </tr>
                     <tr>
                         <td>
                             <span class="param-name">request</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Must be GetCoverage. (Default: <code>GetCoverage</code>)</td>
+                        <td>Must be GetCoverage.</td>
                     </tr>
                     <tr>
                         <td>
                             <span class="param-name">coverageId</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Pollutant. One of: NO2, PM10, PM25 (for PM₂.₅), O3, Total.</td>
+                        <td>Pollutant. </br><span style="color:gray;">Available values: <code>NO2</code>,<code>O3</code>,<code>PM25</code>,<code>PM10</code>,<code>Total</code></span></td>
                         
                     </tr>
                     <tr>
@@ -231,28 +231,28 @@
                             <span class="param-name">format</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Output format. Use <code>image/tiff</code> for GeoTIFF or <code>image/png</code> for visual render.</td>
+                        <td>Output format.</br><span style="color:gray;">Available values: <code>image/tiff</code>,<code>image/png</code></span></td>
                     </tr>
                     <tr>
                         <td>
                             <span class="param-name">subset</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Output geographical area (longitude). Example: <code>Long(-0.12,-0.11)</code></td>
+                        <td>Output geographical area (longitude).</br><span style="color:gray;">Example: <code>Long(-0.12,-0.11)</code></span></td>
                     </tr>
                     <tr>
                         <td>
                             <span class="param-name">subset</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Output geographical area (latitude). Example: <code>Lat(51.51,51.52)</code></td>
+                        <td>Output geographical area (latitude).</br><span style="color:gray;">Example: <code>Long(51.1,51.2)</code></span></td>
                     </tr>
                     <tr>
                         <td>
                             <span class="param-name">subset</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Date and time filter. Example: <code>time("2026-10-09T00:00:00.000Z")</code></td>
+                        <td>Date and time filter. </br><span style="color:gray;">Example: <code>time("2026-10-09T00:00:00.000Z")</code></span></td>
                     </tr>
                 </tbody>
             </table>
