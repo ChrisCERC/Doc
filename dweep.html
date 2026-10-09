@@ -36,20 +36,16 @@ th{color:var(--muted);font-weight:600}
 </head>
 <body>
 <main>
-  <h1>London Air Quality Data API</h1>
+  <h1>WCS</h1>
   <p>Open, read-only access to gridded air quality data using standard OGC services. Every operation is an HTTP <code>GET</code>, so you can call it from curl, Python, R, QGIS or any GIS tool.</p>
   <div class="base"><strong>Base URL</strong><br><code>https://api.airtext.info/geoserver/london</code></div>
-  <div class="note"><strong>Which service?</strong> Use <b>WMS</b> to get a ready-made map image. Use <b>WCS</b> to download the raw pixel values as a GeoTIFF for analysis. Layer / coverage: <code>london:NO2</code> (WMS) and <code>NO2</code> (WCS). Time values are ISO 8601 UTC, e.g. <code>2026-10-09T00:00:00.000Z</code>.</div>
   <div id="ops"></div>
 </main>
 <script>
 const B = 'https://api.airtext.info/geoserver/london';
 const T = '2026-10-09T00:00:00.000Z';
 const P = (name, req, type, desc, ex) => ({name, req, type, desc, ex});
-const WMS_COMMON = [
-  P('service', 1, 'string', 'Must be WMS.', 'WMS'),
-  P('version', 1, 'string', 'WMS version: 1.1.1 or 1.3.0. With 1.3.0 and EPSG:4326 the bbox order is lat,lon.', '1.1.1'),
-];
+
 const WCS_COMMON = [
   P('service', 1, 'string', 'Must be WCS.', 'WCS'),
   P('version', 1, 'string', 'WCS version.', '2.0.0'),
@@ -57,26 +53,7 @@ const WCS_COMMON = [
 const curl = (url, params, out) => 'curl -G "' + url + '" \\\n' +
   params.map(p => "  --data-urlencode '" + p + "'").join(' \\\n') + (out ? ' \\\n  -o ' + out : '');
 
-const ops = [
- {group:'WMS: map images', items:[
-  {path:'/wms', title:'GetMap', desc:'Returns a styled map image (PNG) of a layer for an area and time.',
-   params:[...WMS_COMMON,
-    P('request',1,'string','Must be GetMap.','GetMap'),
-    P('layers',1,'string','Layer name.','london:NO2'),
-    P('styles',0,'string','Named style. Leave blank for the default style.',''),
-    P('bbox',1,'string','Area as minx,miny,maxx,maxy in the units of the CRS.','-0.20,51.45,-0.05,51.56'),
-    P('srs',1,'string','Coordinate system (WMS 1.1.1). Use crs for WMS 1.3.0.','EPSG:4326'),
-    P('width',1,'integer','Image width in pixels.','800'),
-    P('height',1,'integer','Image height in pixels.','700'),
-    P('format',1,'string','image/png or image/jpeg.','image/png'),
-    P('transparent',0,'boolean','Transparent background (PNG only).','true'),
-    P('time',0,'string','Timestamp (ISO 8601, UTC). Must be one the layer has.',T)],
-   curl:curl(B+'/wms',['service=WMS','version=1.1.1','request=GetMap','layers=london:NO2','styles=','bbox=-0.20,51.45,-0.05,51.56','srs=EPSG:4326','width=800','height=700','format=image/png','transparent=true','time='+T],'no2.png'),
-   resp:'200: image/png (the map). 400: invalid parameter or time not available (XML error message).'},
-  {path:'/wms', title:'GetCapabilities', desc:'Lists the available layers, styles, CRSs and time values.',
-   params:[...WMS_COMMON, P('request',1,'string','Must be GetCapabilities.','GetCapabilities')],
-   curl:curl(B+'/wms',['service=WMS','version=1.1.1','request=GetCapabilities'],'wms-capabilities.xml'),
-   resp:'200: application/xml.'}]},
+const ops = 
  {group:'WCS: raw data', items:[
   {path:'/wcs', title:'GetCoverage', desc:'Downloads the raw grid values for an area and time as a GeoTIFF.<img src="./assets/img/WCS.png" alt="Example WCS GeoTIFF output" width="250px" />',
    params:[...WCS_COMMON,
@@ -87,15 +64,7 @@ const ops = [
     P('subset',1,'string','Output geographical area (latitude)','Lat(51.51,51.52)'),
     P('subset',1,'string','Date','time("2026-10-09T00:00:00.000Z")')],
    curl:curl(B+'/wcs',['service=WCS','version=2.0.0','request=GetCoverage','coverageId=NO2','format=image/tiff','subset=Long(-0.12,-0.11)','subset=Lat(51.51,51.52)','subset=time("'+T+'")'],'no2.tif'),
-   resp:'200: image/tiff (GeoTIFF; open in QGIS, GDAL, rasterio). 400: invalid subset or time not available.'},
-  {path:'/wcs', title:'DescribeCoverage', desc:'Describes a coverage: extent, CRS, resolution, bands and time range.',
-   params:[...WCS_COMMON, P('request',1,'string','Must be DescribeCoverage.','DescribeCoverage'), P('coverageId',1,'string','Coverage name.','NO2')],
-   curl:curl(B+'/wcs',['service=WCS','version=2.0.0','request=DescribeCoverage','coverageId=NO2'],'no2-describe.xml'),
-   resp:'200: application/xml.'},
-  {path:'/wcs', title:'GetCapabilities', desc:'Lists the coverages offered by the service.',
-   params:[...WCS_COMMON, P('request',1,'string','Must be GetCapabilities.','GetCapabilities')],
-   curl:curl(B+'/wcs',['service=WCS','version=2.0.0','request=GetCapabilities'],'wcs-capabilities.xml'),
-   resp:'200: application/xml.'}]}
+   resp:'200: image/tiff (GeoTIFF; open in QGIS, GDAL, rasterio). 400: invalid subset or time not available.'}]}
 ];
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
