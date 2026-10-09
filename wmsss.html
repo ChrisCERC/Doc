@@ -225,7 +225,7 @@ When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS
                             <span class="param-name">layers</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Pollutant. One of: NO2, PM10, PM25 (for PM₂.₅), O3, Total.</td>
+                        <td>Pollutant (NOTE: PM25 refers to PM₂.₅)</br>Available values: NO2, PM10, PM25, O3, Total.</td>
                         
                     </tr>
                     <tr>
@@ -261,22 +261,22 @@ When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS
                             <span class="param-name">width</span> <span class="required">*</span><br>
                             <span class="param-type">integer</span>
                         </td>
-                        <td></td>Width of the output image (pixels)</td>
+                        <td>Width of the output image (pixels)</td>
                     </tr>
                     <tr>
                         <td>
                             <span class="param-name">height</span> <span class="required">*</span><br>
                             <span class="param-type">integer</span>
                         </td>
-                        <td></td>Height of the output image (pixels)</td>
+                        <td>Height of the output image (pixels)</td>
                     </tr>
                 </tbody>
             </table>
 
             <h4>CURL Command</h4>
             <div class="snippet-box">
-curl -G "https://api.airtext.info/geoserver/london/wcs" \<br>
-&nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "service=WCS" \<br>
+curl -G "https://api.airtext.info/geoserver/london/wms" \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "service=WMS" \<br>
 &nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "version=2.0.0" \<br>
 &nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "request=GetCoverage" \<br>
 &nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "coverageId=NO2" \<br>
@@ -289,24 +289,13 @@ curl -G "https://api.airtext.info/geoserver/london/wcs" \<br>
 
             <h4>Responses</h4>
             <div class="response-code">200 OK</div>
-            <div class="desc-text">image/png or image/tiff payload returned successfully.</div>
+            <div class="desc-text">image/png or image/jpeg payload returned successfully.</div>
             
             <div class="response-code">400 Bad Request</div>
-            <div class="desc-text">Invalid subset boundary or time slice not available.</div>
         </div>
     </div>
 </div>
 
-<script>
-    function toggleDetails(element) {
-        const body = element.nextElementSibling;
-        if (body.style.display === "none") {
-            body.style.display = "block";
-        } else {
-            body.style.display = "none";
-        }
-    }
-</script>
 
 </body>
 </html>
