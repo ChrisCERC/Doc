@@ -171,7 +171,9 @@
   {% include header.html %}
 
 <div class="swagger-container">
-    <h2 class="section-title">WCS: raw data</h2>
+    <h1 class="title">WCS API definition</h1>
+    <pre class="base-url">[ Base URL: api.airtext.info/geoserver/london/wcs ]</pre>
+    
 
     <!-- WCS GetCoverage Operation -->
     <div class="opblock">
@@ -182,9 +184,8 @@
         </div>
         <div class="opblock-body">
             <div class="desc-text">
-                Downloads raw grid values or visual representations for an area and time.<br>
+                Downloads raw airTEXT pollution data for analysis.<br>
                 <strong>Example Visual Render Preview:</strong><br>
-                <!-- Replace with your actual image path -->
                 <img src="no2.png" alt="NO2 Coverage Preview" class="preview-img" width="400">
             </div>
 
@@ -223,7 +224,8 @@
                             <span class="param-name">coverageId</span> <span class="required">*</span><br>
                             <span class="param-type">string</span>
                         </td>
-                        <td>Pollutant to download. One of: NO2, PM10, PM25, O3, Total. (Default: <code>NO2</code>)</td>
+                        <td>Pollutant levels (µg/m³ for individual pollutants, or DAQI index for total) to download. One of: NO2, PM10, PM25, O3, Total. (Default: <code>NO2</code>)</td>
+                        
                     </tr>
                     <tr>
                         <td>
