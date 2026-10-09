@@ -53,7 +53,7 @@ const WCS_COMMON = [
 const curl = (url, params, out) => 'curl -G "' + url + '" \\\n' +
   params.map(p => "  --data-urlencode '" + p + "'").join(' \\\n') + (out ? ' \\\n  -o ' + out : '');
 
-const ops = 
+const ops = [
  {group:'WCS: raw data', items:[
   {path:'/wcs', title:'GetCoverage', desc:'Downloads the raw grid values for an area and time as a GeoTIFF.',
    params:[...WCS_COMMON,
