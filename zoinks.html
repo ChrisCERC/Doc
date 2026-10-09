@@ -5,7 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airtext API Documentation (Swagger Style)</title>
+    <title>WCS API documentation</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+    <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css" />
     <style>
         :root {
             --swagger-bg: #fafafa;
@@ -162,7 +164,10 @@
         }
     </style>
 </head>
-<body>
+<body style="margin: 0; padding: 0; background-color: #f4f7fb;">
+
+  <!-- Include airTEXT Header Component -->
+  {% include header.html %}
 
 <div class="swagger-container">
     <h2 class="section-title">WCS: raw data</h2>
