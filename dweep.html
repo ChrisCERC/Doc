@@ -55,7 +55,7 @@ const curl = (url, params, out) => 'curl -G "' + url + '" \\\n' +
 
 const ops = 
  {group:'WCS: raw data', items:[
-  {path:'/wcs', title:'GetCoverage', desc:'Downloads the raw grid values for an area and time as a GeoTIFF.<img src="./assets/img/WCS.png" alt="Example WCS GeoTIFF output" width="250px" />',
+  {path:'/wcs', title:'GetCoverage', desc:'Downloads the raw grid values for an area and time as a GeoTIFF.',
    params:[...WCS_COMMON,
     P('request',1,'string','Must be GetCoverage.','GetCoverage'),
     P('coverageId',1,'string','Pollutant to download. One of: NO2, PM10, PM25, O3, Total.','NO2'),
@@ -64,7 +64,7 @@ const ops =
     P('subset',1,'string','Output geographical area (latitude)','Lat(51.51,51.52)'),
     P('subset',1,'string','Date','time("2026-10-09T00:00:00.000Z")')],
    curl:curl(B+'/wcs',['service=WCS','version=2.0.0','request=GetCoverage','coverageId=NO2','format=image/tiff','subset=Long(-0.12,-0.11)','subset=Lat(51.51,51.52)','subset=time("'+T+'")'],'no2.tif'),
-   resp:'200: image/tiff (GeoTIFF; open in QGIS, GDAL, rasterio). 400: invalid subset or time not available.'}]}
+   resp:'200: image/tiff (GeoTIFF; open in QGIS, GDAL, rasterio). 400: invalid subset or time not available.<img src="./assets/img/WCS.png" alt="Example WCS GeoTIFF output" width="250px" />'}]}
 ];
 
 const esc = s => String(s).replace(/[&<>]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
