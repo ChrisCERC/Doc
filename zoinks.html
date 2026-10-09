@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airtext API Documentation (Swagger Style)</title>
+    <style>
+        :root {
+            --swagger-bg: #fafafa;
+            --primary-blue: #49cc90; /* GET method color */
+            --primary-bg: rgba(73, 204, 144, 0.1);
+            --border-color: #eaeaea;
+            --text-main: #3b4151;
+            --text-muted: #333333;
+            --code-bg: #282c34;
+            --code-text: #abb2bf;
+        }
+
+        body {
+            font-family: sans-serif;
+            color: var(--text-main);
+            background-color: #fff;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .swagger-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        h2.section-title {
+            font-size: 24px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-top: 30px;
+        }
+
+        /* Operation Card */
+        .opblock {
+            border: 1px solid #49cc90;
+            background-color: var(--primary-bg);
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+
+        .opblock-summary {
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .opblock-method {
+            background-color: var(--primary-blue);
+            color: white;
+            font-weight: bold;
+            padding: 6px 15px;
+            border-radius: 4px;
+            font-size: 14px;
+            text-align: center;
+            min-width: 50px;
+            margin-right: 15px;
+        }
+
+        .opblock-path {
+            font-family: monospace;
+            font-size: 16px;
+            font-weight: bold;
+            flex-grow: 1;
+        }
+
+        .opblock-summary-description {
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        /* Operation Details (Collapsible body) */
+        .opblock-body {
+            padding: 20px;
+            background: #fff;
+            border-top: 1px solid #49cc90;
+        }
+
+        .desc-text {
+            margin-bottom: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        /* Parameters Table */
+        h4 {
+            font-size: 14px;
+            text-transform: uppercase;
+            color: var(--text-main);
+            margin-bottom: 10px;
+        }
+
+        .parameters-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .parameters-table th {
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+            color: #3b4151;
+        }
+
+        .parameters-table td {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: top;
+        }
+
+        .param-name {
+            font-weight: bold;
+            font-family: monospace;
+        }
+
+        .param-type {
+            color: #919191;
+            font-family: monospace;
+            font-size: 12px;
+        }
+
+        .required {
+            color: red;
+            font-size: 12px;
+        }
+
+        /* Curl & Response Blocks */
+        .snippet-box {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            font-family: monospace;
+            padding: 12px 15px;
+            border-radius: 4px;
+            font-size: 13px;
+            overflow-x: auto;
+            margin-bottom: 20px;
+        }
+
+        .response-code {
+            font-weight: bold;
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="swagger-container">
+    <h2 class="section-title">WCS: raw data</h2>
+
+    <!-- WCS GetCoverage Operation -->
+    <div class="opblock">
+        <div class="opblock-summary" onclick="toggleDetails(this)">
+            <span class="opblock-method">GET</span>
+            <span class="opblock-path">/wcs</span>
+            <span class="opblock-summary-description">Downloads the coverage rendered as a visual PNG image or GeoTIFF grid.</span>
+        </div>
+        <div class="opblock-body">
+            <div class="desc-text">
+                Downloads raw grid values or visual representations for an area and time.<br>
+                <strong>Example Visual Render Preview:</strong><br>
+                <!-- Replace with your actual image path -->
+                <img src="no2.png" alt="NO2 Coverage Preview" class="preview-img" width="400">
+            </div>
+
+            <h4>Parameters</h4>
+            <table class="parameters-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <span class="param-name">service</span> <span class="required">*</span><br>
+                            <span class="param-type">string</span>
+                        </td>
+                        <td>Must be WCS. (Default: <code>WCS</code>)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="param-name">version</span> <span class="required">*</span><br>
+                            <span class="param-type">string</span>
+                        </td>
+                        <td>WCS version standard. (Default: <code>2.0.0</code>)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="param-name">request</span> <span class="required">*</span><br>
+                            <span class="param-type">string</span>
+                        </td>
+                        <td>Must be GetCoverage. (Default: <code>GetCoverage</code>)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="param-name">coverageId</span> <span class="required">*</span><br>
+                            <span class="param-type">string</span>
+                        </td>
+                        <td>Pollutant to download. One of: NO2, PM10, PM25, O3, Total. (Default: <code>NO2</code>)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="param-name">format</span> <span class="required">*</span><br>
+                            <span class="param-type">string</span>
+                        </td>
+                        <td>Output format. Use <code>image/tiff</code> for GeoTIFF or <code>image/png</code> for visual render. (Default: <code>image/png</code>)</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="param-name">subset</span> <span class="required">*</span><br>
+                            <span class="param-type">string</span>
+                        </td>
+                        <td>Output geographical area (longitude). Example: <code>Long(-0.12,-0.11)</code></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="param-name">subset</span> <span class="required">*</span><br>
+                            <span class="param-type">string</span>
+                        </td>
+                        <td>Output geographical area (latitude). Example: <code>Lat(51.51,51.52)</code></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <span class="param-name">subset</span> <span class="required">*</span><br>
+                            <span class="param-type">string</span>
+                        </td>
+                        <td>Date and time filter. Example: <code>time("2026-10-09T00:00:00.000Z")</code></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h4>CURL Command</h4>
+            <div class="snippet-box">
+curl -G "https://api.airtext.info/geoserver/london/wcs" \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "service=WCS" \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "version=2.0.0" \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "request=GetCoverage" \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "coverageId=NO2" \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "format=image/png" \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "subset=Long(-0.12,-0.11)" \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode "subset=Lat(51.51,51.52)" \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;--data-urlencode 'subset=time("2026-10-09T00:00:00.000Z")' \<br>
+&nbsp;&nbsp;&nbsp;&nbsp;-o no2.png
+            </div>
+
+            <h4>Responses</h4>
+            <div class="response-code">200 OK</div>
+            <div class="desc-text">image/png or image/tiff payload returned successfully.</div>
+            
+            <div class="response-code">400 Bad Request</div>
+            <div class="desc-text">Invalid subset boundary or time slice not available.</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleDetails(element) {
+        const body = element.nextElementSibling;
+        if (body.style.display === "none") {
+            body.style.display = "block";
+        } else {
+            body.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+</html>
