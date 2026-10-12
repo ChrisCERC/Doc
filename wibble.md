@@ -29,7 +29,8 @@ When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS
 
 #### Example cURL Command
 
-```curl -G "https://api.airtext.info/geoserver/london/wms" \
+```bash
+curl -G "https://api.airtext.info/geoserver/london/wms" \
     --data-urlencode "service=WMS" \
     --data-urlencode "version=1.3.0" \
     --data-urlencode "request=GetMap" \
@@ -40,7 +41,8 @@ When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS
     --data-urlencode "bbox=51.069,-0.853,51.721,0.337" \
     --data-urlencode "width=600" \
     --data-urlencode "height=400" \
-    -o no2.png```
+    -o no2.png
+```
 
 #### Responses
 
