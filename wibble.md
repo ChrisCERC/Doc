@@ -1,31 +1,23 @@
 # GeoServer WMS Layer API
 
-**Version:** 1.0.0  
 **Base URL:** `https://api.airtext.info`  
-**Generated:** 2026-10-12  
-
-Interactive documentation for GeoServer Web Map Service (WMS) layers
 
 ---
 
-## General
+### ![GET](https://img.shields.io/badge/GET-2ea44f?style=flat-square) /geoserver/london/wms
 
-### `GET` /geoserver/london/wms
-
-Renders airTEXT maps
+Provides map images showing airTEXT forecast maps styled by DAQI band.
 
 Provides URLs that can be used to view map layers.<br /><br />
 **Note for GIS Software & Libraries:**<br />
 When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS) or web mapping libraries (like OpenLayers or Leaflet), bounding box (`bbox`), image dimensions (`width`, `height`), and spatial reference (`srs`/`crs`) parameters are typically calculated and managed automatically by the client software as you pan and zoom.<br /><br />
-**NOTE:** The "Try it out" feature in Swagger UI will not display the rendered map directly due to CORS restrictions. However, you can copy the generated **Request URL** and open it directly in a new browser tab to view the map image.
-
 
 #### Parameters
 
 | Name | In | Type | Required | Description |
 |------|----|------|----------|-------------|
-| `service` | query | `string` | &#10003; | Web Mapping Service (WMS) |
-| `version` | query | `string` | &#10003; | Version of WMS |
+| `service` | query | `string` | &#10003; | Must be WMS |
+| `version` | query | `string` | &#10003; | WMS version <br /> `Available values: 1.3.0, 1.1.0` |
 | `request` | query | `string` | &#10003; | Request for map image |
 | `layers` | query | `string` | &#10003; | Pollutant layers |
 | `time` | query | `string` |  | ISO 8601 timestamp (YYYY-MM-DDT00:00:00Z) |
