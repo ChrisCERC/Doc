@@ -88,7 +88,7 @@ Status	Description
 
 !GET
 
-GET /users/{id}
+![GET](https://img.shields.io/badge/GET-2ea44f?style=flat-square) /users/{id}
 
 Retrieve a specific user using their unique ID.
 
