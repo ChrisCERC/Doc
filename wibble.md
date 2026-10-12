@@ -15,11 +15,11 @@ When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS
 
 | Name | Required | Description |
 |------|----------|-------------|
-| service  <br /> `string`  | &#10003; | Must be WMS |
+| service  <br /> `string`  | &#10003; | Must be **WMS** |
 | version  <br /> `string` | &#10003; | WMS version <br /> `Available values: 1.3.0, 1.1.0` |
-| request  <br /> `string` | &#10003; | Request for map image |
-| layers  <br /> `string` | &#10003; | Pollutant layers <br /> `Available values: NO2, O3, PM10, PM25, Total` |
-| time  <br /> `ISO 8601 timestamp` |  | ISO 8601 timestamp (YYYY-MM-DDT00:00:00Z) <br /> `Default: <today's date>`  <br /> `Example: 2026-12-25T00:00:00.000Z` |
+| request  <br /> `string` | &#10003; | Must be **GetMap** |
+| layers  <br /> `string` | &#10003; | Pollutant layer shown <br /> `Available values: NO2, O3, PM10, PM25, Total` |
+| time  <br /> `ISO 8601 timestamp` |  | Date `YYYY-MM-DDT00:00:00Z` <br /> `Default: <today's date>`  <br /> `Example: 2026-12-25T00:00:00.000Z` |
 | format  <br /> `string` | &#10003; | Image format <br /> `Available values: image/png, image/jpeg` |
 | srs  <br /> `string` | &#10003; | Coordinate system in WGS84, British National Grid or Google <br /> `Available values: EPSG:4326, EPSG:27700, EPSG:900913` | 
 | bbox  <br /> `string` | &#10003; | Bounding box in map coordinates <br /> `Example: 51.069,-0.853,51.721,0.337` |
