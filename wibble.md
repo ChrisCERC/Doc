@@ -1,201 +1,49 @@
-# WMS API definition
-` [ Base URL: api.airtext.info/ ]
+# GeoServer WMS Layer API
 
-My API
-API reference documentation
-Property	Value
-Version	1.0.0
-Status	Stable
-Base URL	https://api.example.com/v1
-Content-Type	application/json
-Table of Contents
-Overview
-Authentication
-Endpoints
-List users
-Get user by ID
-Create user
-Data Models
-Error Handling
-Overview
+**Version:** 1.0.0  
+**Base URL:** `https://api.airtext.info`  
+**Generated:** 2026-10-12  
 
-This API allows clients to retrieve, create, and manage user resources.
+Interactive documentation for GeoServer Web Map Service (WMS) layers
 
-Base URL
-https://api.example.com/v1
+---
 
-Common Headers
-Header	Value	Required
-Authorization	Bearer <token>	Yes
-Accept	application/json	No
-Content-Type	application/json	For requests with a JSON body
-Authentication
+## General
 
-The API uses Bearer token authentication.
+### `GET` /geoserver/london/wms
 
-Include your access token in the Authorization header.
+Renders airTEXT maps
 
-Authorization: Bearer <your-token>
+Provides URLs that can be used to view map layers.<br /><br />
+**Note for GIS Software & Libraries:**<br />
+When adding this WMS service to desktop GIS applications (such as QGIS or ArcGIS) or web mapping libraries (like OpenLayers or Leaflet), bounding box (`bbox`), image dimensions (`width`, `height`), and spatial reference (`srs`/`crs`) parameters are typically calculated and managed automatically by the client software as you pan and zoom.<br /><br />
+**NOTE:** The "Try it out" feature in Swagger UI will not display the rendered map directly due to CORS restrictions. However, you can copy the generated **Request URL** and open it directly in a new browser tab to view the map image.
 
 
-Requests without a valid token may return 401 Unauthorized.
+#### Parameters
 
-Endpoints
-Users
-1. List users
+| Name | In | Type | Required | Description |
+|------|----|------|----------|-------------|
+| `service` | query | `string` | &#10003; | Web Mapping Service (WMS) |
+| `version` | query | `string` | &#10003; | Version of WMS |
+| `request` | query | `string` | &#10003; | Request for map image |
+| `layers` | query | `string` | &#10003; | Pollutant layers |
+| `time` | query | `string` |  | ISO 8601 timestamp (YYYY-MM-DDT00:00:00Z) |
+| `format` | query | `string` | &#10003; | Image format |
+| `srs` | query | `string` | &#10003; | Coordinate system in WGS84, British National Grid or Google |
+| `bbox` | query | `string` | &#10003; | Bounding box in map coordinates |
+| `width` | query | `integer` | &#10003; | Width of the output image (pixels) |
+| `height` | query | `integer` | &#10003; | Height of the output image (pixels) |
 
-!GET
+#### Responses
 
-GET /users
+| Status | Description |
+|--------|-------------|
+| `200` | Map image rendered successfully |
 
-Retrieve a paginated list of users.
-
-Query Parameters
-Parameter	Type	Required	Default	Description
-page	integer	No	1	Page number
-limit	integer	No	20	Number of results per page
-Example Request
-curl -X GET "https://api.example.com/v1/users?page=1&limit=20" \
-  -H "Authorization: Bearer <your-token>" \
-  -H "Accept: application/json"
-
-Responses
-
-200 OK — Request successful.
-
-{
-  "data": [
-    {
-      "id": 1,
-      "name": "Jane Doe",
-      "email": "jane@example.com"
-    }
-  ],
-  "pagination": {
-    "page": 1,
-    "limit": 20,
-    "total": 1
-  }
-}
+---
 
 
-Possible errors
+---
 
-Status	Description
-401	Missing or invalid authentication
-500	Internal server error
-2. Get user by ID
-
-!GET
-
-![GET](https://img.shields.io/badge/GET-2ea44f?style=flat-square) /users/{id}
-
-Retrieve a specific user using their unique ID.
-
-Path Parameters
-Parameter	Type	Required	Description
-id	integer	Yes	Unique user identifier
-Example Request
-curl -X GET "https://api.example.com/v1/users/1" \
-  -H "Authorization: Bearer <your-token>"
-
-Responses
-
-200 OK — User found.
-
-{
-  "id": 1,
-  "name": "Jane Doe",
-  "email": "jane@example.com"
-}
-
-
-Possible errors
-
-Status	Description
-401	Missing or invalid authentication
-404	User not found
-500	Internal server error
-3. Create user
-
-!POST
-
-POST /users
-
-Create a new user.
-
-Request Body
-
-Content-Type: application/json
-
-Field	Type	Required	Description
-name	string	Yes	User's full name
-email	string	Yes	User's email address
-Example Request
-curl -X POST "https://api.example.com/v1/users" \
-  -H "Authorization: Bearer <your-token>" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "name": "Jane Doe",
-    "email": "jane@example.com"
-  }'
-
-Responses
-
-201 Created — User created successfully.
-
-{
-  "id": 2,
-  "name": "Jane Doe",
-  "email": "jane@example.com"
-}
-
-
-Possible errors
-
-Status	Description
-400	Invalid request body
-401	Missing or invalid authentication
-409	User already exists
-500	Internal server error
-Data Models
-User
-
-Represents a user resource.
-
-Field	Type	Required	Description
-id	integer	Yes	Unique user identifier
-name	string	Yes	Full name
-email	string	Yes	Email address
-Example
-{
-  "id": 1,
-  "name": "Jane Doe",
-  "email": "jane@example.com"
-}
-
-Error Handling
-
-Errors use a consistent JSON response format.
-
-{
-  "error": {
-    "code": "USER_NOT_FOUND",
-    "message": "The requested user could not be found."
-  }
-}
-
-Common HTTP Status Codes
-Status	Meaning	Description
-200	OK	Request successful
-201	Created	Resource created successfully
-400	Bad Request	Invalid request parameters or body
-401	Unauthorized	Authentication required or invalid
-403	Forbidden	Insufficient permissions
-404	Not Found	Resource does not exist
-409	Conflict	Resource conflicts with existing data
-500	Internal Server Error	Unexpected server error
-Changelog
-1.0.0
-Initial API documentation.
-Added user listing, retrieval, and creation examples.
+*Generated by [markdown.co.in](https://markdown.co.in/tools/openapi-to-markdown.html)*
