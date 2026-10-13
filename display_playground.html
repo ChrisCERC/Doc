@@ -149,12 +149,13 @@
                 <i class="fa-solid fa-cloud-sun text-slate-400 mr-1"></i> Pollution level
               </label>
               <select id="variant-select" onchange="updateIframeUrl()" class="w-full bg-slate-950 border border-slate-700 text-slate-200 text-xs rounded-lg p-2.5 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none">
-                <option value="">Current</option>
-                <option value="moderatePollutionToday" selected>Moderate today</option>
+                <option value="" selected>Current</option>
+                <option value="moderatePollutionToday">Moderate today</option>
                 <option value="highPollutionToday">High today</option>
 				<option value="veryHighPollutionToday">Very high today</option>
-				<option value="moderatePollutionTomorrow" selected>Moderate tomorrow</option>
+				<option value="moderatePollutionTomorrow">Moderate tomorrow</option>
                 <option value="highPollutionTomorrow">High tomorrow</option>
+				<option value="normal">Info</option>
               </select>
             </div>
 
@@ -321,10 +322,18 @@ const wVal = document.getElementById('custom-w').value;
 
       const baseUrl = 'https://airtext-jcd-display.onrender.com/';
       if (variant) {
-	targetUrl = `${baseUrl}?zone=${encodeURIComponent(zone)}&orientation=${encodeURIComponent(w)}&dummy=${encodeURIComponent(variant)}`;
+		  if (variant == "normal") {
+			  const items = ["educational", "subscription-reflexive", "subscription-actionable"];
+			  const randomItem = items[Math.floor(Math.random() * items.length)];
+			  targetUrl = `${baseUrl}?zone=${encodeURIComponent(zone)}&orientation=${encodeURIComponent(w)}&dummy=normal&info=${randomItem}`;
+		  } else {
+			targetUrl = `${baseUrl}?zone=${encodeURIComponent(zone)}&orientation=${encodeURIComponent(w)}&dummy=${encodeURIComponent(variant)}`;
+		  }
       } else {
 	targetUrl = `${baseUrl}?zone=${encodeURIComponent(zone)}&orientation=${encodeURIComponent(w)}`;
-    targetUrl = `${baseUrl}?zone=${encodeURIComponent(zone)}&orientation=${encodeURIComponent(w)}&dummy=normal&info=educational`;
+    
+		  
+		  
       }
 
 
