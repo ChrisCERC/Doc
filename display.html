@@ -1,0 +1,549 @@
+---
+---
+<!DOCTYPE html>
+<html lang="en" class="dark h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Airtext Display - Developer Dashboard & Playground</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Inter Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#f0f9ff',
+              100: '#e0f2fe',
+              400: '#38bdf8',
+              500: '#0284c7',
+              600: '#0369a1',
+              accent: '#38bdf8',
+            },
+            jcd: {
+              red: '#e30613',
+              dark: '#0f172a',
+              card: '#1e293b',
+              border: '#334155',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Custom scrollbars */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0f172a;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #334155;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #475569;
+    }
+
+
+    /* Device frame responsiveness */
+    .viewport-container {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      transform-origin: center center;
+    }
+  </style>
+</head>
+
+<body class="bg-slate-950 text-slate-100 font-sans h-full flex flex-col antialiased selection:bg-brand-500 selection:text-white">
+{% include promoheader.html %}
+  <!-- Top Navigation Header -->
+  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 flex-none">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <!-- Logo & Title -->
+        <div class="flex items-center space-x-3">
+          <div class="bg-jcd-red text-white text-xs font-bold px-2.5 py-1 rounded tracking-wider uppercase">
+            AIRTEXT
+          </div>
+          <span class="text-slate-600">/</span>
+          <h1 class="text-lg font-semibold text-white tracking-tight flex items-center gap-2">
+            Display Board
+            <span class="text-xs font-mono font-normal bg-slate-800 text-brand-400 px-2 py-0.5 rounded border border-slate-700">v2.1-live</span>
+          </h1>
+        </div>
+
+        <!-- Right Side Links & Status -->
+        <div class="flex items-center space-x-4">
+          <!-- Render Live Status Indicator -->
+          <a href="https://airtext-jcd-display.onrender.com/" target="_blank" rel="noopener noreferrer" 
+             class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300 transition-colors">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            <span>Live Server Active</span>
+            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500"></i>
+          </a>
+
+          <!-- GitHub Repo Link Button -->
+          <a href="#github-docs" onclick="switchTab('docs')" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium border border-slate-700 transition-all shadow-sm">
+            <i class="fa-brands fa-github text-sm"></i>
+            <span>Repository</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Navigation Tabs -->
+  <div class="bg-slate-900/60 border-b border-slate-800/80 flex-none">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <nav class="flex space-x-6">
+        <button id="tab-btn-playground" onclick="switchTab('playground')" 
+                class="py-3 px-1 border-b-2 border-brand-400 font-medium text-sm text-brand-400 flex items-center gap-2 transition-colors">
+          <i class="fa-solid fa-desktop"></i>
+          Interactive Playground
+        </button>
+        <button id="tab-btn-docs" onclick="switchTab('docs')" 
+                class="py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-slate-200 flex items-center gap-2 transition-colors">
+          <i class="fa-solid fa-book-bookmark"></i>
+          Code Base & Setup Docs
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- MAIN CONTENT AREA -->
+  <main class="flex-1 overflow-y-auto bg-slate-950 p-4 sm:p-6 lg:p-8">
+    <div class="max-w-7xl mx-auto">
+
+      <!-- TAB 1: PLAYGROUND -->
+      <section id="tab-playground" class="space-y-6">
+        
+        <!-- Controls Toolbar Card -->
+        <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 shadow-lg space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-4">
+            <h2 class="text-base font-semibold text-white flex items-center gap-2">
+              <i class="fa-solid fa-sliders text-brand-400"></i>
+              Display & Dynamic State Controls
+            </h2>
+            <div class="flex items-center gap-2 text-xs">
+              <span class="text-slate-400">Target Endpoint:</span>
+              <code class="bg-slate-950 text-brand-400 px-2 py-1 rounded border border-slate-800 font-mono" id="current-url-display">https://airtext-jcd-display.onrender.com/</code>
+              <button onclick="copyToClipboard('https://airtext-jcd-display.onrender.com/')" title="Copy Live URL" class="text-slate-400 hover:text-white p-1">
+                <i class="fa-regular fa-copy"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Grid of Controls -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            
+            <!-- 1. Preset Aspect Ratios -->
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5">
+                <i class="fa-solid fa-expand text-slate-400 mr-1"></i> Screen Spec / Aspect Ratio
+              </label>
+              <select id="aspect-preset-select" onchange="applyAspectPreset(this.value)" class="w-full bg-slate-950 border border-slate-700 text-slate-200 text-xs rounded-lg p-2.5 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none">
+                <option value="9:16" selected>9:16 Portrait (1080x1920)</option>
+                <option value="2:3">2:3 Portrait (576x864)</option>
+                <option value="2:1">2:1 Landscape (1440x720)</option>
+                <option value="custom">Custom Dimensions...</option>
+              </select>
+            </div>
+
+            <!-- 2. Zone Selection -->
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5">
+                <i class="fa-solid fa-location-dot text-slate-400 mr-1"></i> Zone
+              </label>
+              <select id="zone-select" onchange="updateIframeUrl()" class="w-full bg-slate-950 border border-slate-700 text-slate-200 text-xs rounded-lg p-2.5 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none">
+                <option value="southwark">Southwark</option>
+                <option value="lambeth">Lambeth</option>
+              </select>
+            </div>
+
+            <!-- 3. Dynamic Variant Trigger -->
+            <div>
+              <label class="block text-xs font-medium text-slate-300 mb-1.5">
+                <i class="fa-solid fa-cloud-sun text-slate-400 mr-1"></i> Pollution level
+              </label>
+              <select id="variant-select" onchange="updateIframeUrl()" class="w-full bg-slate-950 border border-slate-700 text-slate-200 text-xs rounded-lg p-2.5 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none">
+                <option value="">Current</option>
+                <option value="moderatePollutionToday" selected>Moderate</option>
+                <option value="highPollutionToday">High</option>
+              </select>
+            </div>
+
+
+          </div>
+
+          <!-- Custom Dimensions Bar (Hidden by Default) -->
+          <div id="custom-dim-panel" class="hidden pt-3 border-t border-slate-800/80 flex items-center gap-4 text-xs">
+            <span class="text-slate-400 font-medium">Custom Screen Size:</span>
+            <div class="flex items-center gap-2">
+              <input type="number" id="custom-w" value="1080" class="w-20 bg-slate-950 border border-slate-700 rounded px-2 py-1 text-slate-200 text-center font-mono">
+              <span class="text-slate-500">×</span>
+              <input type="number" id="custom-h" value="1920" class="w-20 bg-slate-950 border border-slate-700 rounded px-2 py-1 text-slate-200 text-center font-mono">
+              <span class="text-slate-500">px</span>
+              <button onclick="applyCustomDimensions()" class="bg-brand-500 hover:bg-brand-600 text-white px-3 py-1 rounded text-xs transition-colors">Apply</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Interactive Preview Stage Container -->
+        <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-4 sm:p-6 min-h-[650px] flex flex-col items-center justify-center relative overflow-hidden">
+          
+          <!-- Screen Toolbar Header -->
+          <div class="w-full flex items-center justify-between mb-4 px-2 text-xs text-slate-400">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-red-500"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-yellow-500"></span>
+              <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+              <span class="ml-2 font-mono text-slate-300" id="screen-info-badge">9:16 Portrait (1080 × 1920)</span>
+            </div>
+
+            <!-- Stage Utilities -->
+            <div class="flex items-center gap-3">
+              <button onclick="reloadIframe()" class="hover:text-white transition-colors flex items-center gap-1">
+                <i class="fa-solid fa-rotate-right"></i> Reload Canvas
+              </button>
+              <button onclick="toggleZoom()" id="zoom-btn" class="hover:text-white transition-colors flex items-center gap-1">
+                <i class="fa-solid fa-magnifying-glass-plus"></i> Fit to Viewport
+              </button>
+            </div>
+          </div>
+
+          <!-- CANVAS / IFRAME WRAPPER -->
+          <div id="viewport-stage" class="viewport-container relative bg-black shadow-2xl rounded-lg border-2 border-slate-700 overflow-hidden" 
+               style="width: 360px; height: 640px;">
+            
+
+            <!-- Embedded Live Display Frame -->
+            <iframe id="display-iframe" 
+                    src="https://airtext-jcd-display.onrender.com/?dummy=moderatePollutionToday&zone=Southwark&orientation=portrait" 
+                    class="w-full h-full border-0 bg-slate-900" 
+                    title="JCDecaux Live Screen Preview"
+                    allowfullscreen>
+            </iframe>
+          </div>
+
+          <!-- Legend Footer -->
+          <div class="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-slate-400 bg-slate-900/80 px-4 py-2 rounded-full border border-slate-800">
+            <div class="flex items-center gap-1.5">
+              <span class="w-3 h-3 border border-red-500/80 bg-red-500/10 inline-block rounded"></span>
+              <span>Red Box: Screen Physical Boundary</span>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- TAB 2: GITHUB & CODEBASE DOCUMENTATION -->
+      <section id="tab-docs" class="hidden space-y-6">
+        
+        <!-- Header Banner -->
+        <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-800 rounded-xl p-6 shadow-lg">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div>
+              <div class="flex items-center gap-2 text-brand-400 text-xs font-mono uppercase tracking-wider font-semibold mb-1">
+                <i class="fa-brands fa-github"></i> Repository Access & Setup Guide
+              </div>
+              <h2 class="text-xl font-bold text-white">JCDecaux Airtext Display Codebase</h2>
+              <p class="text-slate-400 text-sm mt-1">Single source of truth for the digital dynamic creative files, responsive rules, and API triggers.</p>
+            </div>
+            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="self-start md:self-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-medium text-xs px-4 py-2.5 rounded-lg flex items-center gap-2 transition-all">
+              <i class="fa-brands fa-github text-base"></i> Open Repository on GitHub
+            </a>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          
+          <!-- Left Column: Step-by-Step Local Setup -->
+          <div class="lg:col-span-2 space-y-6">
+            
+            <!-- Quick Start Card -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-4">
+              <h3 class="text-base font-semibold text-white flex items-center gap-2">
+                <i class="fa-solid fa-terminal text-brand-400"></i> Local Installation & Setup
+              </h3>
+              
+              <div class="space-y-3 text-sm text-slate-300">
+                <p>Follow these steps to pull down the repository and run the display locally for testing:</p>
+
+                <!-- Code block 1: Clone -->
+                <div class="relative group">
+                  <pre class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 font-mono text-xs text-brand-400 overflow-x-auto"><code>git clone https://github.com/your-org/airtext-jcd-display.git
+cd airtext-jcd-display</code></pre>
+                  <button onclick="copyCode(this)" class="absolute right-2 top-2 bg-slate-800 text-slate-300 hover:text-white px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">Copy</button>
+                </div>
+
+                <!-- Code block 2: Install -->
+                <div class="relative group">
+                  <pre class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 font-mono text-xs text-brand-400 overflow-x-auto"><code># Install dependencies
+npm install
+
+# Start local dev server
+npm run dev</code></pre>
+                  <button onclick="copyCode(this)" class="absolute right-2 top-2 bg-slate-800 text-slate-300 hover:text-white px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">Copy</button>
+                </div>
+
+                <p class="text-xs text-slate-400">The local server will spin up on <code class="text-slate-200">http://localhost:3000</code>. You can test different variant query flags locally by opening <code class="text-slate-200">http://localhost:3000/?variant=moderate</code>.</p>
+              </div>
+            </div>
+</div>
+
+              
+
+          <!-- Right Column: Project Structure & Deployment -->
+          <div class="space-y-6">
+            
+            <!-- Repository Structure -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-3">
+              <h3 class="text-sm font-semibold text-white flex items-center gap-2">
+                <i class="fa-solid fa-folder-tree text-brand-400"></i> Project File Structure
+              </h3>
+              
+              <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
+                <div>📁 <span class="text-brand-400">src/</span></div>
+                <div class="pl-4">├── 📁 <span class="text-slate-400">assets/</span> <span class="text-slate-500">(Logos, QR codes)</span></div>
+                <div class="pl-4">├── 📁 <span class="text-slate-400">components/</span> <span class="text-slate-500">(Display views)</span></div>
+                <div class="pl-4">├── 📁 <span class="text-slate-400">api/</span> <span class="text-slate-500">(Airtext API client)</span></div>
+                <div class="pl-4">└── 📄 <span class="text-slate-300">index.html</span></div>
+                <div>📄 <span class="text-slate-300">render.yaml</span> <span class="text-slate-500">(Render config)</span></div>
+                <div>📄 <span class="text-slate-300">package.json</span></div>
+              </div>
+            </div>
+
+            <!-- Deployment Pipeline Info -->
+            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-3">
+              <h3 class="text-sm font-semibold text-white flex items-center gap-2">
+                <i class="fa-solid fa-cloud-arrow-up text-brand-400"></i> Render Host Details
+              </h3>
+              <p class="text-xs text-slate-400 leading-relaxed">
+                The application is continuously deployed via GitHub commits to Render web service.
+              </p>
+              
+              <div class="space-y-2 text-xs">
+                <div class="flex justify-between py-1 border-b border-slate-800">
+                  <span class="text-slate-400">Live URL:</span>
+                  <span class="text-slate-200 font-mono">airtext-jcd-display.onrender.com</span>
+                </div>
+                <div class="flex justify-between py-1 border-b border-slate-800">
+                  <span class="text-slate-400">Build Command:</span>
+                  <span class="text-slate-200 font-mono">npm run build</span>
+                </div>
+                <div class="flex justify-between py-1">
+                  <span class="text-slate-400">Branch:</span>
+                  <span class="text-slate-200 font-mono">main</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+
+    </div>
+  </main>
+
+  <!-- JavaScript Controller -->
+  <script>
+    // State management
+    let isZoomedFit = false;
+
+    // Tab Switching Functionality
+    function switchTab(tabId) {
+      // Hide all sections
+      document.getElementById('tab-playground').classList.add('hidden');
+      document.getElementById('tab-docs').classList.add('hidden');
+
+      // Deactivate all buttons
+      document.querySelectorAll('nav button').forEach(btn => {
+        btn.className = 'py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-slate-200 flex items-center gap-2 transition-colors';
+      });
+
+      // Show selected section and highlight button
+      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
+      if (activeBtn) {
+        activeBtn.className = 'py-3 px-1 border-b-2 border-brand-400 font-medium text-sm text-brand-400 flex items-center gap-2 transition-colors';
+      }
+    }
+
+    // Apply Aspect Ratio Presets
+    function applyAspectPreset(preset) {
+      const stage = document.getElementById('viewport-stage');
+      const customPanel = document.getElementById('custom-dim-panel');
+      const infoBadge = document.getElementById('screen-info-badge');
+
+      if (preset === 'custom') {
+        customPanel.classList.remove('hidden');
+        return;
+      } else {
+        customPanel.classList.add('hidden');
+      }
+
+      let w = 360;
+      let h = 640;
+      let label = '';
+
+      switch(preset) {
+        case '9:16':
+          w = 640;
+          h = 360;
+          label = '9:16 Portrait (1080 x 1920)';
+          break;
+        case '2:3':
+          w = 540;
+          h = 360;
+          label = '2:3 Portrait (576 x 864)';
+          break;
+        case '2:1':
+          w = 720;
+          h = 360;
+          label = '2:1 Landscape (1440 x 720)';
+          break;
+      }
+
+      stage.style.width = `${w}px`;
+      stage.style.height = `${h}px`;
+      infoBadge.textContent = label;
+updateIframeUrl();
+    }
+
+    // Apply Custom Dimensions
+    function applyCustomDimensions() {
+      const wVal = document.getElementById('custom-w').value;
+      const hVal = document.getElementById('custom-h').value;
+      const stage = document.getElementById('viewport-stage');
+      const infoBadge = document.getElementById('screen-info-badge');
+
+      if (wVal && hVal) {
+        // Scaled preview container size capped for screen visibility
+        const scaleFactor = Math.min(600 / wVal, 600 / hVal, 1);
+        const displayW = Math.round(wVal * scaleFactor);
+        const displayH = Math.round(hVal * scaleFactor);
+
+        stage.style.width = `${displayW}px`;
+        stage.style.height = `${displayH}px`;
+        infoBadge.textContent = `Custom (${wVal} × ${hVal})`;
+      }
+    }
+
+    // Update Live Iframe URL based on selections
+    function updateIframeUrl() {
+      const zone = document.getElementById('zone-select').value;
+      const variant = document.getElementById('variant-select').value;
+      const iframe = document.getElementById('display-iframe');
+      const urlDisplay = document.getElementById('current-url-display');
+      var targetUrl="";
+const aspec = document.getElementById('aspect-preset-select').value;
+let w = "portrait";
+
+
+      switch(aspec) {
+        case '2:1':
+          w = "landscape";
+          break;
+	case 'custom':
+const wVal = document.getElementById('custom-w').value;
+      const hVal = document.getElementById('custom-h').value;
+	  if (wVal > hVal) {
+	    w = "landscape";
+	  }
+      }
+
+      const baseUrl = 'https://airtext-jcd-display.onrender.com/';
+      if (variant) {
+	targetUrl = `${baseUrl}?zone=${encodeURIComponent(zone)}&orientation=${encodeURIComponent(w)}&dummy=${encodeURIComponent(variant)}`;
+      } else {
+	targetUrl = `${baseUrl}?zone=${encodeURIComponent(zone)}&orientation=${encodeURIComponent(w)}`;
+      }
+
+
+      iframe.src = targetUrl;
+      urlDisplay.textContent = targetUrl;
+    }
+
+    // Toggle Safe Zone Visual Overlay
+    function toggleSafeZone(show) {
+      const overlay = document.getElementById('overlay-layer');
+      if (show) {
+        overlay.style.display = 'block';
+      } else {
+        overlay.style.display = 'none';
+      }
+    }
+
+    // Reload Canvas Frame
+    function reloadIframe() {
+      const iframe = document.getElementById('display-iframe');
+      iframe.src = iframe.src;
+    }
+
+    // Quick Trigger Variant State from API Tab
+    function triggerVariantState(variant) {
+      document.getElementById('variant-select').value = variant;
+      switchTab('playground');
+      updateIframeUrl();
+    }
+
+    // Copy to Clipboard Utility
+    function copyToClipboard(text) {
+      const tempInput = document.createElement('textarea');
+      tempInput.value = text;
+      document.body.appendChild(tempInput);
+      tempInput.select();
+      document.execCommand('copy');
+      document.body.removeChild(tempInput);
+      
+      // Visual feedback
+      alert('Copied URL to clipboard!');
+    }
+
+    function copyCode(btn) {
+      const pre = btn.previousElementSibling;
+      if (pre) {
+        const text = pre.innerText;
+        const tempInput = document.createElement('textarea');
+        tempInput.value = text;
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+
+        const origText = btn.innerText;
+        btn.innerText = 'Copied!';
+        setTimeout(() => { btn.innerText = origText; }, 2000);
+      }
+    }
+  </script>
+</body>
+</html>
