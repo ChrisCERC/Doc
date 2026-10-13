@@ -1,4 +1,9 @@
-# airTEXT JCDecaux Display Board
+---
+layout: boardheader
+title: airTEXT Display Board
+---
+
+# airTEXT Display Board
 
 This is a simple display board that shows the airTEXT forecast for the next 24 hours. It is designed for a JCDecaux Roadside Digital 6-sheet display board (1080 x 1920), but can be used in any setting that supports HTML and JavaScript.
 
