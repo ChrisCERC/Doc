@@ -77,68 +77,12 @@
 <body class="bg-slate-950 text-slate-100 font-sans h-full flex flex-col antialiased selection:bg-brand-500 selection:text-white">
 {% include promoheader.html %}
   <!-- Top Navigation Header -->
-  <header class="bg-slate-900 border-b border-slate-800 sticky top-0 z-50 flex-none">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
-        <!-- Logo & Title -->
-        <div class="flex items-center space-x-3">
-          <div class="bg-jcd-red text-white text-xs font-bold px-2.5 py-1 rounded tracking-wider uppercase">
-            AIRTEXT
-          </div>
-          <span class="text-slate-600">/</span>
-          <h1 class="text-lg font-semibold text-white tracking-tight flex items-center gap-2">
-            Display Board
-            <span class="text-xs font-mono font-normal bg-slate-800 text-brand-400 px-2 py-0.5 rounded border border-slate-700">v2.1-live</span>
-          </h1>
-        </div>
-
-        <!-- Right Side Links & Status -->
-        <div class="flex items-center space-x-4">
-          <!-- Render Live Status Indicator -->
-          <a href="https://airtext-jcd-display.onrender.com/" target="_blank" rel="noopener noreferrer" 
-             class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-800/80 hover:bg-slate-800 border border-slate-700 text-xs font-medium text-slate-300 transition-colors">
-            <span class="relative flex h-2 w-2">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span>Live Server Active</span>
-            <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-slate-500"></i>
-          </a>
-
-          <!-- GitHub Repo Link Button -->
-          <a href="#github-docs" onclick="switchTab('docs')" class="flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white text-xs font-medium border border-slate-700 transition-all shadow-sm">
-            <i class="fa-brands fa-github text-sm"></i>
-            <span>Repository</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Main View Navigation Tabs -->
-  <div class="bg-slate-900/60 border-b border-slate-800/80 flex-none">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <nav class="flex space-x-6">
-        <button id="tab-btn-playground" onclick="switchTab('playground')" 
-                class="py-3 px-1 border-b-2 border-brand-400 font-medium text-sm text-brand-400 flex items-center gap-2 transition-colors">
-          <i class="fa-solid fa-desktop"></i>
-          Interactive Playground
-        </button>
-        <button id="tab-btn-docs" onclick="switchTab('docs')" 
-                class="py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-slate-200 flex items-center gap-2 transition-colors">
-          <i class="fa-solid fa-book-bookmark"></i>
-          Code Base & Setup Docs
-        </button>
-      </nav>
-    </div>
-  </div>
+  
 
   <!-- MAIN CONTENT AREA -->
   <main class="flex-1 overflow-y-auto bg-slate-950 p-4 sm:p-6 lg:p-8">
     <div class="max-w-7xl mx-auto">
 
-      <!-- TAB 1: PLAYGROUND -->
-      <section id="tab-playground" class="space-y-6">
         
         <!-- Controls Toolbar Card -->
         <div class="bg-slate-900 border border-slate-800 rounded-xl p-4 sm:p-5 shadow-lg space-y-4">
@@ -258,115 +202,7 @@
 
         </div>
 
-      </section>
-
-      <!-- TAB 2: GITHUB & CODEBASE DOCUMENTATION -->
-      <section id="tab-docs" class="hidden space-y-6">
-        
-        <!-- Header Banner -->
-        <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border border-slate-800 rounded-xl p-6 shadow-lg">
-          <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-            <div>
-              <div class="flex items-center gap-2 text-brand-400 text-xs font-mono uppercase tracking-wider font-semibold mb-1">
-                <i class="fa-brands fa-github"></i> Repository Access & Setup Guide
-              </div>
-              <h2 class="text-xl font-bold text-white">JCDecaux Airtext Display Codebase</h2>
-              <p class="text-slate-400 text-sm mt-1">Single source of truth for the digital dynamic creative files, responsive rules, and API triggers.</p>
-            </div>
-            <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="self-start md:self-auto bg-slate-800 hover:bg-slate-700 border border-slate-700 text-white font-medium text-xs px-4 py-2.5 rounded-lg flex items-center gap-2 transition-all">
-              <i class="fa-brands fa-github text-base"></i> Open Repository on GitHub
-            </a>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          
-          <!-- Left Column: Step-by-Step Local Setup -->
-          <div class="lg:col-span-2 space-y-6">
-            
-            <!-- Quick Start Card -->
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-4">
-              <h3 class="text-base font-semibold text-white flex items-center gap-2">
-                <i class="fa-solid fa-terminal text-brand-400"></i> Local Installation & Setup
-              </h3>
-              
-              <div class="space-y-3 text-sm text-slate-300">
-                <p>Follow these steps to pull down the repository and run the display locally for testing:</p>
-
-                <!-- Code block 1: Clone -->
-                <div class="relative group">
-                  <pre class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 font-mono text-xs text-brand-400 overflow-x-auto"><code>git clone https://github.com/your-org/airtext-jcd-display.git
-cd airtext-jcd-display</code></pre>
-                  <button onclick="copyCode(this)" class="absolute right-2 top-2 bg-slate-800 text-slate-300 hover:text-white px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">Copy</button>
-                </div>
-
-                <!-- Code block 2: Install -->
-                <div class="relative group">
-                  <pre class="bg-slate-950 p-3.5 rounded-lg border border-slate-800 font-mono text-xs text-brand-400 overflow-x-auto"><code># Install dependencies
-npm install
-
-# Start local dev server
-npm run dev</code></pre>
-                  <button onclick="copyCode(this)" class="absolute right-2 top-2 bg-slate-800 text-slate-300 hover:text-white px-2 py-1 rounded text-[10px] opacity-0 group-hover:opacity-100 transition-opacity">Copy</button>
-                </div>
-
-                <p class="text-xs text-slate-400">The local server will spin up on <code class="text-slate-200">http://localhost:3000</code>. You can test different variant query flags locally by opening <code class="text-slate-200">http://localhost:3000/?variant=moderate</code>.</p>
-              </div>
-            </div>
-</div>
-
-              
-
-          <!-- Right Column: Project Structure & Deployment -->
-          <div class="space-y-6">
-            
-            <!-- Repository Structure -->
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-3">
-              <h3 class="text-sm font-semibold text-white flex items-center gap-2">
-                <i class="fa-solid fa-folder-tree text-brand-400"></i> Project File Structure
-              </h3>
-              
-              <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 font-mono text-xs text-slate-300 space-y-1">
-                <div>📁 <span class="text-brand-400">src/</span></div>
-                <div class="pl-4">├── 📁 <span class="text-slate-400">assets/</span> <span class="text-slate-500">(Logos, QR codes)</span></div>
-                <div class="pl-4">├── 📁 <span class="text-slate-400">components/</span> <span class="text-slate-500">(Display views)</span></div>
-                <div class="pl-4">├── 📁 <span class="text-slate-400">api/</span> <span class="text-slate-500">(Airtext API client)</span></div>
-                <div class="pl-4">└── 📄 <span class="text-slate-300">index.html</span></div>
-                <div>📄 <span class="text-slate-300">render.yaml</span> <span class="text-slate-500">(Render config)</span></div>
-                <div>📄 <span class="text-slate-300">package.json</span></div>
-              </div>
-            </div>
-
-            <!-- Deployment Pipeline Info -->
-            <div class="bg-slate-900 border border-slate-800 rounded-xl p-6 space-y-3">
-              <h3 class="text-sm font-semibold text-white flex items-center gap-2">
-                <i class="fa-solid fa-cloud-arrow-up text-brand-400"></i> Render Host Details
-              </h3>
-              <p class="text-xs text-slate-400 leading-relaxed">
-                The application is continuously deployed via GitHub commits to Render web service.
-              </p>
-              
-              <div class="space-y-2 text-xs">
-                <div class="flex justify-between py-1 border-b border-slate-800">
-                  <span class="text-slate-400">Live URL:</span>
-                  <span class="text-slate-200 font-mono">airtext-jcd-display.onrender.com</span>
-                </div>
-                <div class="flex justify-between py-1 border-b border-slate-800">
-                  <span class="text-slate-400">Build Command:</span>
-                  <span class="text-slate-200 font-mono">npm run build</span>
-                </div>
-                <div class="flex justify-between py-1">
-                  <span class="text-slate-400">Branch:</span>
-                  <span class="text-slate-200 font-mono">main</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </section>
+      
 
 
 
@@ -378,24 +214,7 @@ npm run dev</code></pre>
     // State management
     let isZoomedFit = false;
 
-    // Tab Switching Functionality
-    function switchTab(tabId) {
-      // Hide all sections
-      document.getElementById('tab-playground').classList.add('hidden');
-      document.getElementById('tab-docs').classList.add('hidden');
-
-      // Deactivate all buttons
-      document.querySelectorAll('nav button').forEach(btn => {
-        btn.className = 'py-3 px-1 border-b-2 border-transparent font-medium text-sm text-slate-400 hover:text-slate-200 flex items-center gap-2 transition-colors';
-      });
-
-      // Show selected section and highlight button
-      document.getElementById(`tab-${tabId}`).classList.remove('hidden');
-      const activeBtn = document.getElementById(`tab-btn-${tabId}`);
-      if (activeBtn) {
-        activeBtn.className = 'py-3 px-1 border-b-2 border-brand-400 font-medium text-sm text-brand-400 flex items-center gap-2 transition-colors';
-      }
-    }
+    
 
     // Apply Aspect Ratio Presets
     function applyAspectPreset(preset) {
