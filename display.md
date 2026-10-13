@@ -1,5 +1,5 @@
 ---
-layout: boardheader
+layout: boardlayout
 title: airTEXT Display Board
 ---
 
