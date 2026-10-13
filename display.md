@@ -3,7 +3,7 @@ layout: boardlayout
 title: airTEXT Display Board
 ---
 
-You can find the project source code at [GitHub][repo-link].
+You can find the project source code at [![GitHub Badge](https://img.shields.io/badge/GitHub-View%20Source-blue?logo=github)][repo-link].
 
 [repo-link]: https://github.com/CERCUK/airtext-jcd-display
 
