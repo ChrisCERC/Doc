@@ -122,8 +122,24 @@
                 <i class="fa-solid fa-location-dot text-slate-400 mr-1"></i> Zone
               </label>
               <select id="zone-select" onchange="updateIframeUrl()" class="w-full bg-slate-950 border border-slate-700 text-slate-200 text-xs rounded-lg p-2.5 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none">
-                <option value="southwark">Southwark</option>
-                <option value="lambeth">Lambeth</option>
+                <optgroup label="--- Most Popular ---">
+        			<option value="southwark">Southwark</option>
+                	<option value="lambeth">Lambeth</option>
+    			</optgroup>
+				<optgroup label="--- London boroughs ---">
+        			<option value="barnet">Barnet</option>
+                	<option value="bexley">Bexley</option>
+    			</optgroup>
+				<optgroup label="--- Essex regions ---">
+					<option value="chelmsford">Chelmsford</option>
+        			<option value="colchester">Colchester</option>
+                	<option value="maldon">Maldon</option>
+    			</optgroup>
+			    <optgroup label="--- Surrey regions ---">
+        			<option value="elmbridge">Elmbridge</option>
+                	<option value="runnymede">Runnymede</option>
+    			</optgroup>
+				 
               </select>
             </div>
 
@@ -134,8 +150,11 @@
               </label>
               <select id="variant-select" onchange="updateIframeUrl()" class="w-full bg-slate-950 border border-slate-700 text-slate-200 text-xs rounded-lg p-2.5 focus:ring-2 focus:ring-brand-500 focus:border-brand-500 outline-none">
                 <option value="">Current</option>
-                <option value="moderatePollutionToday" selected>Moderate</option>
-                <option value="highPollutionToday">High</option>
+                <option value="moderatePollutionToday" selected>Moderate today</option>
+                <option value="highPollutionToday">High today</option>
+				<option value="veryHighPollutionToday">Very high today</option>
+				<option value="moderatePollutionTomorrow" selected>Moderate tomorrow</option>
+                <option value="highPollutionTomorrow">High tomorrow</option>
               </select>
             </div>
 
